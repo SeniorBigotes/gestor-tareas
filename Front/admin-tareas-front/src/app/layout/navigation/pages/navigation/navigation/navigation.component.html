@@ -1,0 +1,33 @@
+<div class="navigation-layout">
+    <div class="navigation d-flex flex-column gap-4" [ngClass]="translate ? 'menu-show' : 'menu-hidden'">
+        <div class="d-flex align-items-center justify-content-between">
+            <h2 class="fs-1">Menú</h2>
+            <div class="navigation-svg" (click)="onClick()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-badge-left-filled" width="20"
+                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M17 6h-6a1 1 0 0 0 -.78 .375l-4 5a1 1 0 0 0 0 1.25l4 5a1 1 0 0 0 .78 .375h6l.112 -.006a1 1 0 0 0 .669 -1.619l-3.501 -4.375l3.5 -4.375a1 1 0 0 0 -.78 -1.625z"
+                        stroke-width="0" fill="currentColor" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="navigate-line"></div>
+    
+        <div class="account d-flex align-items-center gap-3">
+            <div class="account-avatar bg-danger rounded-circle"> M </div>
+            <p class="fs-2">Invitado</p>
+        </div>
+
+        <div class="navigate-line"></div>
+
+        <ul class="navigate-list d-flex flex-column gap-3">
+            <li>Mis actividades</li>
+            <li>Equipos</li>
+            <li>Amigos</li>
+            <li>Calendario</li>
+        </ul>
+    </div>
+</div>

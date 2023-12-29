@@ -1,0 +1,61 @@
+@use '../styles.scss' as m;
+
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 100vh;
+    @include m.tablet {
+        grid-template-columns: 2fr 2fr;
+    }
+    @include m.pc {
+        grid-template-columns: 1fr 5fr;
+    }
+    nav {
+        position: absolute;
+        width: 100%;
+        width: 75vw;
+        transition: all .3s ease;
+        z-index: 1;
+        @include m.tablet {
+            width: 50vw;
+        }
+        @include m.pc {
+            width: 25vw;
+            max-width: 30rem;
+        }
+        &.show-navigate {
+            opacity: 1;
+            z-index: 1;
+        }
+        &.hidde-navigate {
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+    .main {
+        position: relative;
+        grid-column: 1 / 3;
+        @include m.pc {
+            width: 100%;
+            grid-column: 1/5;
+        }
+        .main-shadow {
+            position: absolute;
+            background-color: rgba(#000000, .4);
+            height: 100vh;
+            width: 100%;
+            transition: all .5s ease;
+            @include m.pc {
+                display: none;
+            }
+            &.show-shadow {
+                opacity: 1;
+                z-index: 0;
+            }
+            &.hidde-shadow {
+                opacity: 0;
+                z-index: -1;
+            }
+        }
+    }
+}

@@ -1,1 +1,128 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'normalize.css';
+/*---------------------------------------VARIABLES---------------------------------------*/
+$font-family: 'Montserrat', sans-serif;
+$font-family: 'Open Sans', sans-serif;
+
+$color-navigate: #ebebeb;
+$color-navigate-hover: #d8d7d7;
+$color-btn-navigate: #ede1e1;
+$color-progress: rgba(255, 163, 57, 0.812);
+/*---------------------------------------MIXINS---------------------------------------*/
+$base-font-size: 10; // Establece el tamaño base de la fuente en 10px
+@mixin phone {
+    @media(max-width: 767px) {
+        @content; //remplasa el contenido
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: $base-font-size * 1.4; // Ajusta el tamaño de fuente para tablet (resoluciones estándar)
+        @content; // Remplaza el contenido
+    }
+}
+
+@mixin pc {
+    @media(min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin pc-chico {
+    @media (min-width: 1024px) and (max-width: 1365px) {
+        font-size: $base-font-size * 1.8; // Ajusta el tamaño de fuente para pc-chico (resolución 720p)
+        @content; // Remplaza el contenido
+    }
+}
+
+@mixin pc-mediano {
+    @media (min-width: 1366px) and (max-width: 1920px) {
+        font-size: $base-font-size * 2.2; // Ajusta el tamaño de fuente para pc-mediano (resolución 1080p)
+        @content; // Remplaza el contenido
+    }
+}
+
+@mixin pc-grande {
+    @media (min-width: 1921px) and (max-width: 2560px) {
+        font-size: $base-font-size * 2.6; // Ajusta el tamaño de fuente para pc-grande
+        @content; // Remplaza el contenido
+    }
+}
+
+@mixin pc-extra {
+    @media (min-width: 2561px) {
+        font-size: $base-font-size * 3; // Ajusta el tamaño de fuente para pc-1920
+        @content; // Remplaza el contenido
+    }
+}
+
+@mixin cgrid($col, $med) {
+    display: grid;
+    grid-template-columns: repeat($col, 1fr);
+    gap: $med;
+}
+
+@mixin resetear-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/*---------------------------------------GLOBALES---------------------------------------*/
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: $font-family;
+}
+
+p {
+    font-size: 2rem;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.6rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+//La etiqueta es ajustada para que soporte los cambios echos en el archivo HTML
+img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.container {
+    max-width: 100rem;
+}
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

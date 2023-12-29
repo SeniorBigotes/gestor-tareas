@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { modules } from './modules';
+import { HomeService } from './layout/home/home.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [modules],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'admin-tareas-front';
+export class AppComponent implements OnInit {
+
+  showNavigate: boolean = false;
+
+  constructor(private homeService: HomeService) {}
+
+  ngOnInit(): void {
+    this.homeService.showNavigate$.subscribe(show => this.showNavigate = show);
+  }
 }

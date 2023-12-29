@@ -1,0 +1,67 @@
+@use '../../../../../../styles.scss' as m;
+
+.navigation-layout {
+    .navigation {
+        background-color: m.$color-navigate;
+        padding: 5rem 2rem;
+        height: 100vh;
+        transition: all .3s ease;
+        z-index: 1;
+        @include m.pc {
+            opacity: 1;
+            transform: none;
+        }
+        &.menu-hidden {
+            transition: all .3s ease;
+            transform: translateX(-35rem);
+            opacity: 0;
+        }
+        &.menu-show {
+            transition: all .3s ease;
+            opacity: 1;
+        }
+        .navigation-svg {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 3rem;
+            width: 3rem;
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: rgba(#000000,  .2);
+                border-radius: 50%;
+            }
+        }
+    }
+    .account {
+        .account-avatar {
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 3rem;
+        }
+    }
+
+    .navigate-list {
+        @include m.resetear-lista();
+        li {
+            padding: 1rem;
+            border-radius: 5px;
+            &:hover {
+                background-color: m.$color-navigate-hover
+            }
+        }
+    }
+
+    .navigate-line {
+        content: "";
+        background-color: darken(m.$color-navigate-hover, 10);
+        width: 100%;
+        height: 1px;
+    }
+}

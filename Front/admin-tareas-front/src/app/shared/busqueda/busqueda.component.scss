@@ -1,0 +1,11 @@
+@use '../../../styles.scss' as m;
+
+.search {
+    input {
+        border: 1px solid m.$color-navigate-hover;
+        border-radius: 5px;
+        padding: .5rem;
+        width: 50vw;
+        max-width: 50rem;
+    }
+}

@@ -1,0 +1,47 @@
+@use '../../../../../styles.scss' as m;
+
+header {
+    border-radius: 10px;
+    height: 15rem;
+    width: 90%;
+    margin: 1rem auto;
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    @include m.tablet {
+        width: 80%;
+    }
+}
+
+.btn-menu {
+    background-color: lighten(m.$color-btn-navigate, 2);
+    border-radius: 5px;
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease;
+    &:hover {
+        background-color: darken(m.$color-btn-navigate, 5);
+    }
+}
+
+main {
+    margin: auto;
+    width: 90%;
+    @include m.tablet {
+        width: 80%;
+    }
+    .activities {
+        /*
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        */
+        .carrusel {
+            display: flex;
+            gap: 2rem;
+            overflow: hidden;
+        }
+    }
+}
