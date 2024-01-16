@@ -1,0 +1,17 @@
+@use '../../../styles.scss' as m;
+
+.btn-menu {
+    background-color: lighten(m.$color-btn-navigate, 2);
+    border-radius: 5px;
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease;
+
+    &:hover {
+        background-color: darken(m.$color-btn-navigate, 5);
+        cursor: pointer;
+    }
+}

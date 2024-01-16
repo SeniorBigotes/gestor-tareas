@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { BusquedaComponent } from '../../../../shared/busqueda/busqueda.component';
 import { HomeService } from '../../home.service';
-import { MyActivitiesComponent } from '../../components/my-activities/my-activities.component';
+import { MenuComponent } from '../../../../shared/menu/menu.component';
+import { UserLogoComponent } from '../../../../shared/user-logo/user-logo.component';
+import { NotifyComponent } from '../../../../shared/notify/notify.component';
+import { ActivitiesComponent } from '../../../activities/pages/activities/activities.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BusquedaComponent, MyActivitiesComponent],
+  imports: [BusquedaComponent, MenuComponent, UserLogoComponent, NotifyComponent, ActivitiesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -21,8 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   onClick(): void {  
-    this.showNavigate = true;
+    this.showNavigate = !this.showNavigate;
     this.homeService.navigate(this.showNavigate);
   }
 }
-

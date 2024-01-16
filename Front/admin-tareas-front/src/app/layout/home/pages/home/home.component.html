@@ -1,36 +1,40 @@
-<div>
-    <header class="d-flex justify-content-center align-items-center gap-4">
-        <div class="btn-menu border border-1" (click)="onClick()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="20" height="20"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 6l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 18l16 0" />
-            </svg>
+<div class="principal">
+    <header class="">
+        <h1 class="text-center py-4 text-uppercase fw-bold">Gestor de actividades</h1>
+        <div class="d-flex justify-content-center align-items-center gap-4">
+            <app-menu (click)="onClick()"></app-menu>
+            <app-busqueda></app-busqueda>
+            <app-user-logo></app-user-logo>
+            <app-notify></app-notify>
         </div>
-    
-        <app-busqueda></app-busqueda>
     </header>
 
     <main>
-        <div>
-            <h2>Mis actividades</h2>
+        <div class="all-activities my-5">
+            <h2 class="my-4">Mis actividades</h2>
+            <!-- Carrusel -->
             <div class="activities">
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
-                <app-my-activities></app-my-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+                <app-activities></app-activities>
+            </div>
+        </div>
+        
+        <div class="create-activities pb-5">
+            <h2 class="my-4">Mis grupos</h2>
+            <div class="groups">
+            </div>
+        </div>
+
+        <div>
+            <h2 class="my-4">Mis contactos</h2>
+            <div class="contacts">
             </div>
         </div>
     </main>

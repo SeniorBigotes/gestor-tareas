@@ -1,5 +1,9 @@
 @use '../../../../../../styles.scss' as m;
 
+li {
+    font-size: 1.5rem;
+}
+
 .navigation-layout {
     .navigation {
         background-color: m.$color-navigate;
@@ -32,18 +36,6 @@
                 background-color: rgba(#000000,  .2);
                 border-radius: 50%;
             }
-        }
-    }
-    .account {
-        .account-avatar {
-            width: 5rem;
-            height: 5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: white;
-            font-size: 3rem;
         }
     }
 

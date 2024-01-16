@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../../../home/home.service';
+import { RouterModule } from '@angular/router';
+import { UserLogoComponent } from '../../../../../shared/user-logo/user-logo.component';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, UserLogoComponent],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })

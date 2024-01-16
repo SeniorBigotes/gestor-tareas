@@ -9,5 +9,5 @@ export const modules = [
     CommonModule,
     RouterOutlet,
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
 ];

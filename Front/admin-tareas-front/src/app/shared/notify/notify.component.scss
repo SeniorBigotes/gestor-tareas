@@ -1,0 +1,12 @@
+@use '../../../styles.scss' as m;
+
+.notify {
+    background-color: lighten(m.$color-btn-navigate, 2);
+    width: 4rem;
+    height: 4rem;
+    transition: background-color .3s ease;
+    &:hover {
+        cursor: pointer;
+        background-color: darken(m.$color-btn-navigate, 5);
+    }
+}
