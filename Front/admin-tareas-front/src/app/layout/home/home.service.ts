@@ -1,15 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
+  private dbJson = "assets/db.json";
+
   private showNavigate = new BehaviorSubject<boolean>(false);
   showNavigate$ = this.showNavigate.asObservable();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getTasks(): Observable<any> {
+    return this.http.get(this.dbJson);
+  }
 
   navigate(arg: boolean): void {
     this.showNavigate.next(arg);

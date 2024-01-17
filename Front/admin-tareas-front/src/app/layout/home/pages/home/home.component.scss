@@ -28,18 +28,4 @@ main {
     @include m.tablet {
         width: 80%;
     }
-    .activities {
-        display: flex;
-        gap: 2rem;
-        overflow: hidden;
-        padding-bottom: 2rem;
-    }
-    .create {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-        align-items: center;
-        justify-items: center;
-        width: 100%;
-        gap: 2rem;
-    }
 }

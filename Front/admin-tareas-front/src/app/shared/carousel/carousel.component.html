@@ -1,0 +1,21 @@
+<div class="carousel">
+    <div class="carousel-container">
+        <div class="carousel-elements">
+            @for (item of displayedItems; track item.id) {
+                <div class="item">
+                    <p>{{ item.nombre }}</p>
+                    <p>{{ item.fechaEntrega }}</p>
+                    <p>{{ item.progreso }}%</p>
+                    <progress [value]="item.progreso" max="100"></progress>
+                </div>
+            } @empty {
+                <p>Sin tareas recientes</p>
+            }
+        </div>
+    </div>
+
+    <div class="carousel-btn">
+        <button (click)="prev()"> <- </button>
+        <button (click)="next()"> -> </button>
+    </div>
+</div>

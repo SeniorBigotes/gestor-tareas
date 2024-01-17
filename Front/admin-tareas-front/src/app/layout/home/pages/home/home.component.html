@@ -12,18 +12,10 @@
     <main>
         <div class="all-activities my-5">
             <h2 class="my-4">Mis actividades</h2>
-            <!-- Carrusel -->
-            <div class="activities">
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-                <app-activities></app-activities>
-            </div>
+            @if(dataLoadCarousel) {
+                <app-carousel [items]="carouselItems"></app-carousel>
+            }
+            
         </div>
         
         <div class="create-activities pb-5">

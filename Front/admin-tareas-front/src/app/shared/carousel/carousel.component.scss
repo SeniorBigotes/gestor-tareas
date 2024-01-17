@@ -1,0 +1,21 @@
+/* carousel.component.css */
+.carousel {
+    overflow: hidden;
+
+    .carousel-container {
+        transition: transform .5s ease-in-out;
+    }
+    .carousel-elements {
+        display: flex;
+        gap: 2rem;
+        .item {
+            width: 25rem;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+    }
+    .carousel-btn {
+        display: flex;
+        justify-content: space-between;
+    }
+}

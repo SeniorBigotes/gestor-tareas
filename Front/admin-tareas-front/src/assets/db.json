@@ -1,0 +1,172 @@
+{
+    "proyectos": [
+        {
+            "id": 1,
+            "nombre": "Crear musica",
+            "descripcion": "Proyecto para crear una aplicación web utilizando Angular y Node.js.",
+            "fechaInicio": "2024-01-20",
+            "fechaEntrega": "2024-02-15",
+            "fechaModificacion": "2024-01-25",
+            "autor": "Usuario1",
+            "grupo": "Equipo1",
+            "progreso": 30,
+            "completado": false,
+            "subtareas": [
+                {
+                    "id": 1,
+                    "nombre": "Diseño de Interfaz",
+                    "fechaInicio": "2024-01-20",
+                    "fechaEntrega": "2024-02-01",
+                    "completado": true
+                },
+                {
+                    "id": 2,
+                    "nombre": "Configuración del Servidor",
+                    "fechaInicio": "2024-01-25",
+                    "fechaEntrega": "2024-02-10",
+                    "completado": false
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Carrusel",
+            "descripcion": "Crear un blog personal utilizando tecnologías modernas.",
+            "fechaInicio": "2024-02-01",
+            "fechaEntrega": "2024-03-01",
+            "fechaModificacion": "2024-02-10",
+            "autor": "Usuario2",
+            "grupo": "Individual",
+            "progreso": 10,
+            "completado": false,
+            "subtareas": [
+                {
+                    "id": 1,
+                    "nombre": "Configuración del Dominio",
+                    "fechaInicio": "2024-02-01",
+                    "fechaEntrega": "2024-02-15",
+                    "completado": false
+                },
+                {
+                    "id": 2,
+                    "nombre": "Redacción de Primer Artículo",
+                    "fechaInicio": "2024-02-10",
+                    "fechaEntrega": "2024-02-28",
+                    "completado": false
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nombre": "Desarrollo de Aplicación Web",
+            "descripcion": "Proyecto para crear una aplicación web utilizando Angular y Node.js.",
+            "fechaInicio": "2024-01-20",
+            "fechaEntrega": "2024-02-15",
+            "fechaModificacion": "2024-01-25",
+            "autor": "Usuario1",
+            "grupo": "Equipo1",
+            "progreso": 30,
+            "completado": false,
+            "subtareas": [
+                {
+                    "id": 1,
+                    "nombre": "Diseño de Interfaz",
+                    "fechaInicio": "2024-01-20",
+                    "fechaEntrega": "2024-02-01",
+                    "completado": true
+                },
+                {
+                    "id": 2,
+                    "nombre": "Configuración del Servidor",
+                    "fechaInicio": "2024-01-25",
+                    "fechaEntrega": "2024-02-10",
+                    "completado": false
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "nombre": "Proyecto Personal de Blog",
+            "descripcion": "Crear un blog personal utilizando tecnologías modernas.",
+            "fechaInicio": "2024-02-01",
+            "fechaEntrega": "2024-03-01",
+            "fechaModificacion": "2024-02-10",
+            "autor": "Usuario2",
+            "grupo": "Individual",
+            "progreso": 10,
+            "completado": false,
+            "subtareas": [
+                {
+                    "id": 1,
+                    "nombre": "Configuración del Dominio",
+                    "fechaInicio": "2024-02-01",
+                    "fechaEntrega": "2024-02-15",
+                    "completado": false
+                },
+                {
+                    "id": 2,
+                    "nombre": "Redacción de Primer Artículo",
+                    "fechaInicio": "2024-02-10",
+                    "fechaEntrega": "2024-02-28",
+                    "completado": false
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "nombre": "Proyecto de Investigación",
+            "descripcion": "Realizar una investigación sobre las últimas tendencias en inteligencia artificial.",
+            "fechaInicio": "2024-03-01",
+            "fechaEntrega": "2024-04-15",
+            "fechaModificacion": "2024-03-10",
+            "autor": "Usuario3",
+            "grupo": "Equipo2",
+            "progreso": 5,
+            "completado": false,
+            "subtareas": [
+                {
+                    "id": 1,
+                    "nombre": "Recopilación de Datos",
+                    "fechaInicio": "2024-03-01",
+                    "fechaEntrega": "2024-03-15",
+                    "completado": false
+                },
+                {
+                    "id": 2,
+                    "nombre": "Análisis Preliminar",
+                    "fechaInicio": "2024-03-10",
+                    "fechaEntrega": "2024-03-30",
+                    "completado": false
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "nombre": "Proyecto de Diseño Gráfico",
+            "descripcion": "Crear una serie de diseños gráficos para una campaña publicitaria.",
+            "fechaInicio": "2024-04-01",
+            "fechaEntrega": "2024-05-01",
+            "fechaModificacion": "2024-04-10",
+            "autor": "Usuario4",
+            "grupo": "Individual",
+            "progreso": 15,
+            "completado": false,
+            "subtareas": [
+                {
+                    "id": 1,
+                    "nombre": "Conceptualización de Diseños",
+                    "fechaInicio": "2024-04-01",
+                    "fechaEntrega": "2024-04-10",
+                    "completado": false
+                },
+                {
+                    "id": 2,
+                    "nombre": "Creación de Elementos Gráficos",
+                    "fechaInicio": "2024-04-10",
+                    "fechaEntrega": "2024-04-30",
+                    "completado": false
+                }
+            ]
+        }
+    ]
+}
