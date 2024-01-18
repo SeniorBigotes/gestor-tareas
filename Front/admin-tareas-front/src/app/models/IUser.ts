@@ -1,0 +1,17 @@
+export interface User {
+    id: number,
+    username: string,
+    password: string,
+    token: string,
+    fullName: string,
+    gender: string,
+    email: string,
+    photoUrl: string,
+    rol: string,
+    state: string,
+    country: string,
+    registrationDate: Date,
+    lastConnection: Date,
+    notifications: boolean,
+    groups: number,
+}

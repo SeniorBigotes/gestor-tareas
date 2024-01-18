@@ -3,19 +3,50 @@
         <div class="carousel-elements">
             @for (item of displayedItems; track item.id) {
                 <div class="item">
-                    <p>{{ item.nombre }}</p>
-                    <p>{{ item.fechaEntrega }}</p>
-                    <p>{{ item.progreso }}%</p>
-                    <progress [value]="item.progreso" max="100"></progress>
+                    @if(item.photo) {
+                        <!-- <img class="photo" [src]="item.name" [alt]="item.info"> -->
+                        <img class="photo" src="assets/img.jpeg" [alt]="item.info">
+                    } @else {
+                        <div class="title">
+                            <p class="fw-bold title_p">{{ item.name }}</p>
+                        </div>
+                    }
+                    @if(regex.test(item.info)) {
+                        <p class="date">{{ item.info | date: 'dd/MM/yyyy'}}</p>
+                    } @else {
+                        <p class="date"> {{item.info}} </p>
+                    }
+                    @if(item.progressbar) {
+                        <div carousel-progress>
+                            <progress [value]="item.footer" max="100"></progress>
+                            <p class="percentage">{{ item.footer }}%</p>
+                        </div>
+                    } @else {
+                        <p class="percentage">{{ item.footer }}</p>
+                    }
                 </div>
             } @empty {
-                <p>Sin tareas recientes</p>
+                <p> Sin resultado </p>
             }
         </div>
     </div>
 
     <div class="carousel-btn">
-        <button (click)="prev()"> <- </button>
-        <button (click)="next()"> -> </button>
+        <button class="button btn-left" (click)="prev()"> 
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-left" width="20" height="20"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z" />
+            </svg>
+        </button>
+        <button class="button btn-right" (click)="next()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-right" width="20" height="20"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z" />
+            </svg>
+        </button>
     </div>
 </div>

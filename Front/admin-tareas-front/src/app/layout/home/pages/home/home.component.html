@@ -12,22 +12,23 @@
     <main>
         <div class="all-activities my-5">
             <h2 class="my-4">Mis actividades</h2>
-            @if(dataLoadCarousel) {
-                <app-carousel [items]="carouselItems"></app-carousel>
+            @if(dataLoadActivities) {
+                <app-carousel [items]="carouselItemsActivities"></app-carousel>
             }
-            
         </div>
         
         <div class="create-activities pb-5">
             <h2 class="my-4">Mis grupos</h2>
-            <div class="groups">
-            </div>
+            @if(dataLoadActivities) {
+                <app-carousel [items]="carouselItemsActivities"></app-carousel>
+            }
         </div>
-
+        
         <div>
             <h2 class="my-4">Mis contactos</h2>
-            <div class="contacts">
-            </div>
+            @if(dataLoadActivities) {
+                <app-carousel [items]="carouselItemsContacts"></app-carousel>
+            }
         </div>
     </main>
 </div>
