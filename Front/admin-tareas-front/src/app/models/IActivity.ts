@@ -10,6 +10,6 @@ export interface Activities {
     progress: number,
     complete: boolean,
     auth: number
-    group?: number,
+    group: boolean,
     subtask?: Subtask[]
 }

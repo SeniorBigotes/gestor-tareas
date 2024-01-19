@@ -13,7 +13,6 @@ import { UserLogoComponent } from '../../../../../shared/user-logo/user-logo.com
 })
 export class NavigationComponent implements OnInit {
 
-  rotate: boolean = false;
   translate: boolean = false;
 
   constructor(private homeService: HomeService) {}
@@ -23,7 +22,6 @@ export class NavigationComponent implements OnInit {
   }
 
   onClick(): void {
-    this.rotate = !this.rotate;
     this.translate = !this.translate;
     this.homeService.navigate(this.translate);
   }

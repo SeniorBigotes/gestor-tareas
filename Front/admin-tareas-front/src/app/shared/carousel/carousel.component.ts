@@ -14,6 +14,8 @@ export class CarouselComponent implements OnInit {
   currentIndex: number = 0;
   showItemsCarousel: number = 5;
 
+  error: boolean = false;
+
   regex = /[\/-]/;
   resolutionBreakpoints = [
     {width: 600, items: 2},
@@ -22,16 +24,31 @@ export class CarouselComponent implements OnInit {
     {width: 1500, items: 5},
   ]
 
+  // ajustar vista en responsive
+
   ngOnInit(): void {
-    this.updateItemsToShow();
+    if(this.items.length === 1) {
+      if(this.items[0] === 'error') this.error = true;
+      if(this.items[0] === null || this.items[0] === 'error') {
+        this.items = [];
+      } else {
+        this.updateItemsToShow();
+      }
+    } else {
+      this.updateItemsToShow();
+    }
   }
 
   // los items aparecen seguidos al terminar
   get displayedItems(): any[] {
-    return this.items
-      .slice(this.currentIndex, this.currentIndex + this.showItemsCarousel)
-      .concat(this.items
-      .slice(0, Math.max(0, this.showItemsCarousel - (this.items.length - this.currentIndex))));
+    if(this.items.length <= 3) {
+      return this.items;
+    } else {
+      return this.items
+        .slice(this.currentIndex, this.currentIndex + this.showItemsCarousel)
+        .concat(this.items
+        .slice(0, Math.max(0, this.showItemsCarousel - (this.items.length - this.currentIndex))));
+    }
   }
   /* Botones
     % asegura que se mantenda dentro del rango
@@ -44,6 +61,10 @@ export class CarouselComponent implements OnInit {
     this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
   }
 
+  reload(): void {
+    window.location.reload();
+  }
+
   // mostrar items dependiendo la resolucion
   private updateItemsToShow(): void {
     const screenWidth = window.innerWidth;
@@ -51,21 +72,9 @@ export class CarouselComponent implements OnInit {
     for(let breakpoint of this.resolutionBreakpoints) {
       if(screenWidth < breakpoint.width) {
         this.showItemsCarousel = breakpoint.items;
-        return;
+        return
       }
       this.showItemsCarousel = 5;
     }
   }
 }
-
-
-/*
-PASAR DATOS CON ESTE FORMATO
-
-   const carousel = {
-      name: task.nombre,
-      info: task.fechaEntrega,
-      number: task.progreso,
-      progressbar: true
-    }
-*/

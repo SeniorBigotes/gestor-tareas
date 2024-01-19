@@ -1,0 +1,338 @@
+[
+    {
+        "id": 1,
+        "name": "Grupo de Trabajo",
+        "authors": [
+            101,
+            102
+        ],
+        "participants": [
+            201,
+            202,
+            203
+        ],
+        "description": "Un grupo dedicado a proyectos colaborativos",
+        "creationDate": "2024-01-20T12:00:00Z",
+        "invitationCode": "ABC123",
+        "tasks": [
+            {
+                "id": 1,
+                "description": "Proyecto de Investigación",
+                "startDate": "2024-01-25T09:00:00Z",
+                "endDate": "2024-02-15T17:00:00Z",
+                "progress": 50,
+                "completed": false,
+                "subtasks": [
+                    {
+                        "id": 101,
+                        "description": "Revisar literatura",
+                        "startDate": "2024-01-25T09:00:00Z",
+                        "endDate": "2024-01-31T17:00:00Z",
+                        "completed": true
+                    },
+                    {
+                        "id": 102,
+                        "description": "Realizar experimentos",
+                        "startDate": "2024-02-01T09:00:00Z",
+                        "endDate": "2024-02-10T17:00:00Z",
+                        "completed": false
+                    }
+                ]
+            }
+        ],
+        "logo": "https://example.com/group_logo.jpg",
+        "privacy": "private",
+        "events": [
+            {
+                "id": 1,
+                "description": "Reunión semanal",
+                "date": "2024-01-27T15:00:00Z"
+            },
+            {
+                "id": 2,
+                "description": "Presentación del Proyecto",
+                "date": "2024-02-14T10:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Equipo de Desarrollo",
+        "authors": [
+            103,
+            104
+        ],
+        "participants": [
+            204,
+            205
+        ],
+        "description": "Un equipo dedicado al desarrollo de software",
+        "creationDate": "2024-02-01T14:00:00Z",
+        "invitationCode": "XYZ789",
+        "tasks": [
+            {
+                "id": 2,
+                "description": "Desarrollo de la Aplicación",
+                "startDate": "2024-02-10T09:00:00Z",
+                "endDate": "2024-03-05T17:00:00Z",
+                "progress": 30,
+                "completed": false,
+                "subtasks": [
+                    {
+                        "id": 103,
+                        "description": "Implementar funciones principales",
+                        "startDate": "2024-02-10T09:00:00Z",
+                        "endDate": "2024-02-25T17:00:00Z",
+                        "completed": false
+                    },
+                    {
+                        "id": 104,
+                        "description": "Realizar pruebas de calidad",
+                        "startDate": "2024-02-26T09:00:00Z",
+                        "endDate": "2024-03-05T17:00:00Z",
+                        "completed": false
+                    }
+                ]
+            }
+        ],
+        "logo": "https://example.com/dev_team_logo.jpg",
+        "privacy": "public",
+        "events": [
+            {
+                "id": 3,
+                "description": "Sesión de Código Conjunto",
+                "date": "2024-02-18T18:00:00Z"
+            },
+            {
+                "id": 4,
+                "description": "Revisión de Progreso",
+                "date": "2024-03-03T11:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Equipo Creativo",
+        "authors": [
+            105,
+            106
+        ],
+        "participants": [
+            207,
+            208,
+            209,
+            210,
+            211,
+            212
+        ],
+        "description": "Un grupo dedicado a la creatividad y diseño",
+        "creationDate": "2024-03-10T10:30:00Z",
+        "invitationCode": "CRE456",
+        "tasks": [
+            {
+                "id": 3,
+                "description": "Diseño de Campaña Publicitaria",
+                "startDate": "2024-03-15T09:00:00Z",
+                "endDate": "2024-04-05T17:00:00Z",
+                "progress": 20,
+                "completed": false,
+                "subtasks": [
+                    {
+                        "id": 105,
+                        "description": "Crear material gráfico",
+                        "startDate": "2024-03-15T09:00:00Z",
+                        "endDate": "2024-03-25T17:00:00Z",
+                        "completed": false
+                    },
+                    {
+                        "id": 106,
+                        "description": "Planificar estrategias de marketing",
+                        "startDate": "2024-03-26T09:00:00Z",
+                        "endDate": "2024-04-05T17:00:00Z",
+                        "completed": false
+                    }
+                ]
+            }
+        ],
+        "logo": "https://example.com/creative_team_logo.jpg",
+        "privacy": "private",
+        "events": [
+            {
+                "id": 5,
+                "description": "Sesión de Ideas",
+                "date": "2024-03-20T14:00:00Z"
+            },
+            {
+                "id": 6,
+                "description": "Presentación de Propuestas",
+                "date": "2024-04-02T16:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Grupo de Estudio",
+        "authors": [
+            107,
+            108
+        ],
+        "participants": [
+            210,
+            211,
+            212
+        ],
+        "description": "Un grupo dedicado al estudio y aprendizaje conjunto",
+        "creationDate": "2024-04-01T09:00:00Z",
+        "invitationCode": "STU789",
+        "tasks": [
+            {
+                "id": 4,
+                "description": "Investigación de Historia Antigua",
+                "startDate": "2024-04-10T09:00:00Z",
+                "endDate": "2024-05-01T17:00:00Z",
+                "progress": 10,
+                "completed": false,
+                "subtasks": [
+                    {
+                        "id": 107,
+                        "description": "Leer libros recomendados",
+                        "startDate": "2024-04-10T09:00:00Z",
+                        "endDate": "2024-04-20T17:00:00Z",
+                        "completed": false
+                    },
+                    {
+                        "id": 108,
+                        "description": "Realizar resúmenes",
+                        "startDate": "2024-04-21T09:00:00Z",
+                        "endDate": "2024-05-01T17:00:00Z",
+                        "completed": false
+                    }
+                ]
+            }
+        ],
+        "logo": "https://example.com/study_group_logo.jpg",
+        "privacy": "public",
+        "events": [
+            {
+                "id": 7,
+                "description": "Debate sobre la Antigüedad",
+                "date": "2024-04-15T19:00:00Z"
+            },
+            {
+                "id": 8,
+                "description": "Revisión de Avances",
+                "date": "2024-04-28T15:30:00Z"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Equipo Deportivo",
+        "authors": [
+            109,
+            110
+        ],
+        "participants": [
+            213,
+            214,
+            215,
+            216
+        ],
+        "description": "Un grupo dedicado a actividades deportivas y salud",
+        "creationDate": "2024-05-05T11:45:00Z",
+        "invitationCode": "DEP123",
+        "tasks": [
+            {
+                "id": 5,
+                "description": "Entrenamiento Semanal",
+                "startDate": "2024-05-10T08:00:00Z",
+                "endDate": "2024-06-01T10:00:00Z",
+                "progress": 70,
+                "completed": false,
+                "subtasks": [
+                    {
+                        "id": 109,
+                        "description": "Carrera de resistencia",
+                        "startDate": "2024-05-10T08:00:00Z",
+                        "endDate": "2024-05-17T10:00:00Z",
+                        "completed": true
+                    },
+                    {
+                        "id": 110,
+                        "description": "Entrenamiento de fuerza",
+                        "startDate": "2024-05-18T08:00:00Z",
+                        "endDate": "2024-06-01T10:00:00Z",
+                        "completed": false
+                    }
+                ]
+            }
+        ],
+        "logo": "https://example.com/sports_team_logo.jpg",
+        "privacy": "public",
+        "events": [
+            {
+                "id": 9,
+                "description": "Partido Amistoso",
+                "date": "2024-05-20T16:30:00Z"
+            },
+            {
+                "id": 10,
+                "description": "Rutina de Yoga",
+                "date": "2024-06-05T09:00:00Z"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Club de Lectura",
+        "authors": [
+            111
+        ],
+        "participants": [
+            216
+        ],
+        "description": "Un grupo dedicado a la lectura y discusión de libros",
+        "creationDate": "2024-06-01T15:30:00Z",
+        "invitationCode": "READ456",
+        "tasks": [
+            {
+                "id": 6,
+                "description": "Lectura Mensual",
+                "startDate": "2024-06-10T10:00:00Z",
+                "endDate": "2024-07-01T12:00:00Z",
+                "progress": 40,
+                "completed": false,
+                "subtasks": [
+                    {
+                        "id": 111,
+                        "description": "Seleccionar libro del mes",
+                        "startDate": "2024-06-10T10:00:00Z",
+                        "endDate": "2024-06-15T12:00:00Z",
+                        "completed": true
+                    },
+                    {
+                        "id": 112,
+                        "description": "Discusión del libro",
+                        "startDate": "2024-06-20T10:00:00Z",
+                        "endDate": "2024-07-01T12:00:00Z",
+                        "completed": false
+                    }
+                ]
+            }
+        ],
+        "logo": "https://example.com/book_club_logo.jpg",
+        "privacy": "private",
+        "events": [
+            {
+                "id": 11,
+                "description": "Encuentro Literario",
+                "date": "2024-06-15T18:30:00Z"
+            },
+            {
+                "id": 12,
+                "description": "Presentación de Nuevos Miembros",
+                "date": "2024-07-01T15:00:00Z"
+            }
+        ]
+    }
+]

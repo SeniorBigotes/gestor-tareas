@@ -7,6 +7,7 @@ $color-navigate: #ebebeb;
 $color-navigate-hover: #d8d7d7;
 $color-btn-navigate: #ede1e1;
 $color-progress: rgba(255, 163, 57, 0.812);
+
 /*---------------------------------------MIXINS---------------------------------------*/
 $base-font-size: 10; // Establece el tamaño base de la fuente en 10px
 @mixin phone {
@@ -92,14 +93,15 @@ p {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
+    color: black !important;
 }
 
 h1,
 h2,
 h3,
 p {
-    margin: 0;
+    margin: 0 !important;
 }
 
 h1 {
@@ -121,8 +123,10 @@ img {
     height: auto;
     display: block;
 }
-.container {
-    max-width: 100rem;
+.contenedor {
+    max-width: 140rem;
+    margin: auto;
+    padding: 2rem 0;
 }
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

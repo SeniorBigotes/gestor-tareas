@@ -1,5 +1,5 @@
-<div class="principal">
-    <header class="">
+<div class="contenedor">
+    <header>
         <h1 class="text-center py-4 text-uppercase fw-bold">Gestor de actividades</h1>
         <div class="d-flex justify-content-center align-items-center gap-4">
             <app-menu (click)="onClick()"></app-menu>
@@ -10,23 +10,32 @@
     </header>
 
     <main>
-        <div class="all-activities my-5">
-            <h2 class="my-4">Mis actividades</h2>
+        <div class="carousel-container">
+            <div class="title">
+                <p>Mis actividades</p>
+                <button class="btn btn-color">Nuevo</button>
+            </div>
             @if(dataLoadActivities) {
                 <app-carousel [items]="carouselItemsActivities"></app-carousel>
             }
         </div>
         
-        <div class="create-activities pb-5">
-            <h2 class="my-4">Mis grupos</h2>
-            @if(dataLoadActivities) {
-                <app-carousel [items]="carouselItemsActivities"></app-carousel>
+        <div class="carousel-container">
+            <div class="title">
+                <p>Mis grupos</p>
+                <button class="btn btn-color">Crear</button>
+            </div>
+            @if(dataLoadGroups) {
+                <app-carousel [items]="carouselItemsGroups"></app-carousel>
             }
         </div>
         
-        <div>
-            <h2 class="my-4">Mis contactos</h2>
-            @if(dataLoadActivities) {
+        <div class="carousel-container">
+            <div class="title">
+                <p>Mis contactos</p>
+                <button class="btn btn-color">Agregar</button>
+            </div>
+            @if(dataLoadContacts) {
                 <app-carousel [items]="carouselItemsContacts"></app-carousel>
             }
         </div>
