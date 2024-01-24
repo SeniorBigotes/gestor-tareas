@@ -1,61 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { BusquedaComponent } from '../../../../shared/busqueda/busqueda.component';
 import { HomeService } from '../../home.service';
-import { MenuComponent } from '../../../../shared/menu/menu.component';
-import { UserLogoComponent } from '../../../../shared/user-logo/user-logo.component';
-import { NotifyComponent } from '../../../../shared/notify/notify.component';
 import { ActivitiesComponent } from '../../../activities/pages/activities/activities.component';
-import { CarouselComponent } from '../../../../shared/carousel/carousel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Activities } from '../../../../models/IActivity';
 import { User } from '../../../../models/IUser';
 import { Group } from '../../../../models/IGroup';
+import { CarouselItems } from '../../Interfaces';
+import { HeaderComponent } from '../../components/header/header.component';
+import { CarouselComponent } from '../../../../shared/carousel/components/carousel.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BusquedaComponent, MenuComponent, UserLogoComponent, NotifyComponent, ActivitiesComponent, CarouselComponent, HttpClientModule],
+  imports: [ActivitiesComponent, CarouselComponent, 
+            HttpClientModule, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
 
-  showNavigate: boolean = false;
-
   dataCarousel?: {
     name: string,
     info: any,
-    footer?: any,
+    footer: any,
     progressbar?: boolean,
     photo?: boolean,
   }
 
   // Carrusel
-  carouselItemsActivities: any[] = [];
+  carouselItemsActivities: CarouselItems[] = [];
   dataLoadActivities: boolean = false;
 
-  carouselItemsGroups: any[] = [];
+  carouselItemsGroups: CarouselItems[] = [];
   dataLoadGroups: boolean = false;
   
-  carouselItemsContacts: any[] = [];
+  carouselItemsContacts: CarouselItems[] = [];
   dataLoadContacts: boolean = false;
 
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.homeService.showNavigate$.subscribe(show => this.showNavigate = show);
-
     /* pasar datos al carrusel */
     // Actividades
     this.homeService.getTasks().subscribe({
       next: tasks => {
-        tasks ? this.transferActivitiesCarousel(tasks.proyectos) : this.carouselItemsActivities.push(null);
+        tasks ? this.transferActivitiesCarousel(tasks) : this.carouselItemsActivities.push(null);
         this.dataLoadActivities = true;
       },
-      error: () => {
-        this.carouselItemsActivities = ['error'];
-        this.dataLoadActivities = true;
-      }
+      error: () => { this.dataLoadActivities = this.handleError('error') }
     });
 
     // Grupos
@@ -64,7 +56,7 @@ export class HomeComponent implements OnInit {
         groups ? this.transferGroupsCarousel(groups) : this.carouselItemsGroups.push(null);
         this.dataLoadGroups = true;
     },
-    error: () => { this.carouselItemsGroups = ['error'] }});
+    error: () => { this.dataLoadGroups = this.handleError('error')}});
 
     // Contactos
     this.homeService.getUsers().subscribe({
@@ -72,12 +64,13 @@ export class HomeComponent implements OnInit {
         users ? this.transferContactsCarousel(users) : this.carouselItemsContacts.push(null);
         this.dataLoadContacts = true;
     },
-    error: () => { this.carouselItemsContacts = ['error'] }});
-  }
+    error: () => { this.dataLoadContacts = this.handleError('error')}});
+  } // end ngOnInit()
 
-  onClick(): void {  
-    this.showNavigate = !this.showNavigate;
-    this.homeService.navigate(this.showNavigate);
+  // manejar errores
+  private handleError(str: string): boolean {
+    this.carouselItemsActivities.push(str);
+    return true;
   }
 
   /* TRANSFERIR DATOS AL CARRUSEL */

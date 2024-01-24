@@ -1,5 +1,4 @@
-{
-    "proyectos": [
+    [
         {
             "id": 1,
             "task": "Desarrollar función de registro",
@@ -100,4 +99,3 @@
             ]
         }
     ]
-}

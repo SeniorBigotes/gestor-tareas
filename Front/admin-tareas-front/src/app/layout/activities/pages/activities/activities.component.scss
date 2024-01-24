@@ -1,11 +1,2 @@
 @use '../../../../../styles.scss' as m;
 
-p {
-    margin: 0;
-    text-align: center;
-}
-.activity {
-    width: 20rem;
-    height: 14rem;
-    background-color: m.$color-navigate;
-}

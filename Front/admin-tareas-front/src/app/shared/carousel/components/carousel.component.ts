@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { CarouselService } from '../carousel.service';
 
 @Component({
   selector: 'app-carousel',
@@ -18,38 +19,37 @@ export class CarouselComponent implements OnInit {
 
   regex = /[\/-]/;
   resolutionBreakpoints = [
+    {width: 400, items: 1},
     {width: 600, items: 2},
-    {width: 800, items: 3},
+    {width: 1000, items: 3},
     {width: 1250, items: 4},
     {width: 1500, items: 5},
   ]
 
-  // ajustar vista en responsive
+  constructor(private carouselService: CarouselService) {}
 
   ngOnInit(): void {
-    if(this.items.length === 1) {
-      if(this.items[0] === 'error') this.error = true;
-      if(this.items[0] === null || this.items[0] === 'error') {
-        this.items = [];
-      } else {
-        this.updateItemsToShow();
-      }
-    } else {
-      this.updateItemsToShow();
-    }
+    this.handleError();
+    this.showItemsCarousel = this.updateItemsToShow();
   }
 
   // los items aparecen seguidos al terminar
   get displayedItems(): any[] {
-    if(this.items.length <= 3) {
+    if (this.items.length <= this.showItemsCarousel) {
       return this.items;
     } else {
-      return this.items
-        .slice(this.currentIndex, this.currentIndex + this.showItemsCarousel)
-        .concat(this.items
-        .slice(0, Math.max(0, this.showItemsCarousel - (this.items.length - this.currentIndex))));
+      const end = this.currentIndex + this.showItemsCarousel;
+      const slicedItems = this.items.slice(this.currentIndex, end);
+
+      // Comprobamos si necesitamos agregar elementos al principio desde el final
+      const remainingItems = this.showItemsCarousel - slicedItems.length;
+      const overflowItems = this.items.slice(0, remainingItems);
+
+      return slicedItems.concat(overflowItems);
     }
   }
+
+
   /* Botones
     % asegura que se mantenda dentro del rango
     currentIndex no debe de sobrepasar a items
@@ -65,16 +65,16 @@ export class CarouselComponent implements OnInit {
     window.location.reload();
   }
 
-  // mostrar items dependiendo la resolucion
-  private updateItemsToShow(): void {
-    const screenWidth = window.innerWidth;
-
-    for(let breakpoint of this.resolutionBreakpoints) {
-      if(screenWidth < breakpoint.width) {
-        this.showItemsCarousel = breakpoint.items;
-        return
-      }
-      this.showItemsCarousel = 5;
+  private handleError(): void {
+    if(this.items[0] === null || this.items[0] === 'error') {
+      if(this.items[0] === 'error') this.error = true;
+      this.items = [];
     }
+  }
+
+  // mostrar items dependiendo la resolucion
+  private updateItemsToShow(): number {
+    const screenWidth = this.carouselService.getScreenWidth();
+    return this.carouselService.showItemsResolution(screenWidth, this.resolutionBreakpoints);
   }
 }

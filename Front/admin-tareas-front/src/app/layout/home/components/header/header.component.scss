@@ -1,0 +1,50 @@
+@use '../../../../../styles.scss' as m;
+
+header {
+    border-radius: 10px;
+    height: 15rem;
+    width: 90%;
+    margin: 1rem auto;
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+
+    @include m.tablet {
+        width: 80%;
+    }
+
+    h1 {
+        color: white;
+    }
+
+    .header {
+        display: grid;
+        justify-items: center;
+        gap: 1rem;
+        grid-template-areas: 
+        "busqueda busqueda busqueda"
+        "menu logo notify";
+
+        @include m.pc {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .header-menu {
+            grid-area: menu;
+            margin-left: 100%;
+        }
+        .header-busqueda {
+            grid-area: busqueda;
+        }
+        .header-logo {
+            grid-area: logo;
+        }
+        .header-notify {
+            grid-area: notify;
+            margin-right: 100%;
+        }
+    }
+    
+}

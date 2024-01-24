@@ -5,6 +5,7 @@ export interface Subtask {
     priority: string,
     dateStart: Date,
     dateEnd: Date,
+    dateComplete: Date,
     complete: boolean,
     auth: number,
 }
