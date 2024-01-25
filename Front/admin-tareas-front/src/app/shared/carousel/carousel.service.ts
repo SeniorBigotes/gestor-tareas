@@ -8,6 +8,14 @@ export class CarouselService {
 
   constructor() { }
 
+    dataCarousel?: {
+      name: string,
+      info: any,
+      footer: any,
+      progressbar?: boolean,
+      photo?: boolean,
+    }
+
   getScreenWidth(): number {
     return window.innerWidth;
   }

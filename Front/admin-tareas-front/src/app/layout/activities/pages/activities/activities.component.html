@@ -1,11 +1,74 @@
 <div class="contenedor">
-    <div class="activities-header d-flex">
-        <app-menu></app-menu>
-        <h2>Actividades</h2>
-        <app-busqueda></app-busqueda>
-        <app-notify></app-notify>
-        <app-user-logo></app-user-logo>
-        <button class="btn btn-primary">Crear</button>
-    </div>
+
+    <app-header></app-header>
+    
+    <div class="py-5">
+        <div>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Recientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fecha de entrega</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Progreso</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-disabled="true">Subtareas</a>
+                </li>
+            </ul>
+        </div>
+
+        <app-carousel-activities></app-carousel-activities>
+    </div> <!-- End filters -->
+
+    <div class="line"></div>
+
+    <div class="activities">
+        <div class="title-activities d-flex justify-content-between mt-5">
+            <p class="text-uppercase">Tarea</p>
+            <div class="d-flex gap-4">
+                <p class="notes">Notas</p>
+                <button class="btn btn-color">Crear</button>
+            </div>
+        </div>
+
+        <div class="tasks">
+            <div class="tasks-main mt-4">
+                <div class="task-content">
+                    <h2 class="fw-bold text-uppercase">Mesa de Servicio</h2>
+                    <p>Autor: <span>Maurucio Puente</span></p>
+                    <p>Grupo: <span>Somos Osos</span></p>
+                    <div class="date d-flex justify-content-center gap-3">
+                        <p>Inicio <span>15-04-2022</span></p>
+                        <div class="lineY"></div>
+                        <p>Entrega <span>24-12-2023</span></p>
+                    </div>
+                    <div class="progessbar d-flex flex-column">
+                        <progress max="100" value="60"></progress>
+                        <span>70%</span>
+                    </div>
+                    <p>En proceso</p>
+                    <p class="lastUpdate"> Ultima actualizacion <span class="d-block">23-12-2023</span></p>
+                    <p class="description">Descripcion <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aperiam deleniti quidem alias reiciendis, quod nostrum
+                        aliquid, explicabo modi minima impedit ratione nulla dolor rem illo aspernatur aut sint qui?
+                        Quis corrupti natus modi alias! Ea ut nam sequi cupiditate aperiam sint vero aspernatur, velit quidem asperiores,
+                        sit provident aut rerum nemo quisquam. Necessitatibus quod blanditiis fuga cupiditate, iusto dolore.
+                        Voluptates perferendis est doloribus sint dolorem rerum veritatis in cumque explicabo dicta inventore fuga delectus
+                        quisquam sequi autem quae iure suscipit sunt tempora vitae porro, exercitationem nisi atque? Laborum, eligendi.</span></p>
+                        
+                    <div class="more" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" 
+                        data-bs-content="Top popover" aria-describedby="popover317829">
+                        <span>...más</span>
+                    </div>
+                </div>
+            </div> <!-- End .tasks -->
+
+            <div class="subtasks">
+
+            </div>
+        </div> <!-- End .subtasks -->
+    </div> <!-- End .activities -->
 
 </div>

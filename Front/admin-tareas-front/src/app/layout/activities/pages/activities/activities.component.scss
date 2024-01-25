@@ -1,2 +1,104 @@
 @use '../../../../../styles.scss' as m;
 
+.nav {
+    .nav-item {
+        .nav-link {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.line {
+    display: block;
+    content: "";
+    width: 90%;
+    height: 1px;
+    border: 1px solid m.$color-line;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.activities {
+    .title-activities {
+        width: 95%;
+        margin: auto;
+
+        .notes {
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            
+            &:hover {
+                filter: invert(70%);
+                font-weight: bold;
+                font-size: 1.9rem;
+            }
+        }
+    }
+
+    .tasks {
+        max-width: 60rem;
+        margin: auto;
+
+        .tasks-main {
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+
+            .task-content {
+                display: grid;
+                gap: 1rem;
+                width: 90%;
+                margin: 1rem auto;
+
+                p {
+                    font-weight: bold;
+                    
+                    span {
+                        font-weight: normal;
+                    }
+                }
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+    
+            .date {
+                .lineY {
+                    content: "";
+                    display: block;
+                    width: 1px;
+                    height: 3rem;
+                    border: 1px solid m.$color-line;
+                    border-radius: 50%;
+                }
+            }
+
+            progress {
+                width: 30%;
+                margin: auto;
+            }
+
+            .lastUpdate {
+                font-size: 1.2rem;
+            }
+
+            .description {
+                height: 15rem;
+                overflow: hidden;
+            }
+
+            .more {
+
+                span {
+                    display: inline;
+                    font-size: 1.5rem;
+                    color: blue;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

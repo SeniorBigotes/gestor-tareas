@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../../home.service';
 import { ActivitiesComponent } from '../../../activities/pages/activities/activities.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Activities } from '../../../../models/IActivity';
@@ -8,6 +7,7 @@ import { Group } from '../../../../models/IGroup';
 import { CarouselItems } from '../../Interfaces';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CarouselComponent } from '../../../../shared/carousel/components/carousel.component';
+import { AppService } from '../../../../app.service';
 
 @Component({
   selector: 'app-home',
@@ -37,12 +37,12 @@ export class HomeComponent implements OnInit {
   carouselItemsContacts: CarouselItems[] = [];
   dataLoadContacts: boolean = false;
 
-  constructor(private homeService: HomeService) {}
+  constructor(private appService: AppService) {}
 
   ngOnInit(): void {
     /* pasar datos al carrusel */
     // Actividades
-    this.homeService.getTasks().subscribe({
+    this.appService.getTasks().subscribe({
       next: tasks => {
         tasks ? this.transferActivitiesCarousel(tasks) : this.carouselItemsActivities.push(null);
         this.dataLoadActivities = true;
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     });
 
     // Grupos
-    this.homeService.getGroups().subscribe({
+    this.appService.getGroups().subscribe({
       next: groups => {
         groups ? this.transferGroupsCarousel(groups) : this.carouselItemsGroups.push(null);
         this.dataLoadGroups = true;
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
     error: () => { this.dataLoadGroups = this.handleError('error')}});
 
     // Contactos
-    this.homeService.getUsers().subscribe({
+    this.appService.getUsers().subscribe({
       next: users => {
         users ? this.transferContactsCarousel(users) : this.carouselItemsContacts.push(null);
         this.dataLoadContacts = true;

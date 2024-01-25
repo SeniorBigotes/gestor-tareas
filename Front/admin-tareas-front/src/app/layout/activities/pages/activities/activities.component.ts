@@ -1,16 +1,25 @@
-import { Component } from '@angular/core';
-import { MenuComponent } from '../../../../shared/menu/menu.component';
-import { BusquedaComponent } from '../../../../shared/busqueda/busqueda.component';
-import { NotifyComponent } from '../../../../shared/notify/notify.component';
-import { UserLogoComponent } from '../../../../shared/user-logo/user-logo.component';
+import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from '../../components/header/header.component';
+import { Activities } from '../../../../models/IActivity';
+import { DataCarousel } from '../../../home/Interfaces';
+import { CarouselActivitiesComponent } from '../../components/carousel-activities/carousel-activities.component';
 
 @Component({
   selector: 'app-activities',
   standalone: true,
-  imports: [MenuComponent, BusquedaComponent, NotifyComponent, UserLogoComponent],
+  imports: [HeaderComponent, CarouselActivitiesComponent],
   templateUrl: './activities.component.html',
   styleUrl: './activities.component.scss'
 })
-export class ActivitiesComponent {
+export class ActivitiesComponent implements OnInit {
 
+  activities: Activities[] = []
+  dataCarousel?: DataCarousel;
+  itemsCarousel: Array<DataCarousel> = [];
+
+  constructor() {}
+
+  ngOnInit(): void {
+
+  } // end ngOnInit()
 }

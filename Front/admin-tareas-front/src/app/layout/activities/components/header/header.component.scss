@@ -1,0 +1,59 @@
+@use '../../../../../styles.scss' as m;
+
+.activities-header {
+    @include m.fondo-colorido;
+    padding: 2rem 0;
+    border-radius: 10px;
+    display: grid;
+    justify-items: center;
+    width: 90%;
+    margin: auto;
+
+    .activities {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 12rem 7rem 12rem;
+        grid-template-rows: repeat(4, 4.7rem);
+        grid-template-areas: 
+        "title title title"
+        "search search search"
+        "menu notify logo"
+        "btn btn btn";
+        
+        @include m.pc {
+            display: flex;
+            gap: 2rem;
+        }
+    
+        .title {
+            grid-area: title;
+            color: m.$color-white;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+    
+        .search {
+            grid-area: search;
+        }
+        
+        .menu {
+            grid-area: menu;
+        }
+    
+        .notify {
+            grid-area: notify;
+        }
+    
+        .logo {
+            grid-area: logo;
+        }
+    
+        .btn {
+            grid-area: btn;
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important;
+        }
+    }
+
+}
