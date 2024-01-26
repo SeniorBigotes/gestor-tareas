@@ -86,13 +86,20 @@
             }
 
             .description {
-                height: 15rem;
-                overflow: hidden;
+                .show {
+                    transition: max-height 0.2s ease-out;
+                    max-height: 20rem;
+                    overflow: scroll;
+                }
+                .hidden {
+                    transition: max-height 0.2s ease-out;
+                    max-height: 9rem;
+                    overflow: hidden;
+                }
             }
 
             .more {
-
-                span {
+                .popover-personal {
                     display: inline;
                     font-size: 1.5rem;
                     color: blue;
