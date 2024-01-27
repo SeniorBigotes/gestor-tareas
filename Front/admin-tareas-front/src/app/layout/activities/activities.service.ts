@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Activities } from '../../models/IActivity';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ActivitiesService {
 
   constructor() { }
   
+  /* ACTIVITY COMPONENT */
   get $showMore(): Observable<boolean> {
     return this.showMore.asObservable();
   }

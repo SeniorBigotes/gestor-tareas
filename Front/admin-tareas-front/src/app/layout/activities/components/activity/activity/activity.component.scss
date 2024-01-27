@@ -1,0 +1,110 @@
+@use '../../../../../../styles.scss' as m;
+
+.tasks-main {
+    border: 2px solid m.$color-navigate-hover;
+    background-color: m.$color-btn-navigate;
+    border-radius: 10px;
+    text-align: center;
+
+    .task-content {
+        display: grid;
+        gap: 1rem;
+        width: 90%;
+        margin: 1rem auto;
+
+        p {
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+
+            span {
+                font-weight: normal;
+                font-size: 2rem;
+                text-transform: none;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .date {
+        .lineY {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 6rem;
+            border: 1px solid m.$color-line;
+            border-radius: 50%;
+        }
+    }
+
+    .progressbar {
+        .percentage {
+            font-size: 1.4rem;
+        }
+
+        progress {
+            width: 30%;
+            margin: auto;
+        }
+
+
+    }
+
+    .inProcess {
+        font-size: 1.2rem;
+        border-radius: 10px;
+        padding: 3px 1.5rem;
+        font-weight: bold;
+        color: rgb(91, 91, 91);
+    }
+
+    .lastUpdate {
+        font-size: 1.2rem;
+    }
+
+    .description {
+        .show {
+            transition: max-height 0.2s ease-out;
+            max-height: 20rem;
+            overflow: scroll;
+        }
+
+        .hidden {
+            transition: max-height 0.2s ease-out;
+            max-height: 9rem;
+            overflow: hidden;
+        }
+    }
+
+    .more {
+        .popover-personal {
+            display: inline;
+            font-size: 1.5rem;
+            color: blue;
+            cursor: pointer;
+        }
+    }
+}
+
+.red {
+    background-color: rgb(172, 0, 0);
+}
+
+.orange {
+    background-color: rgb(255, 102, 0);
+}
+
+.yellow {
+    background-color: rgb(221, 221, 0);
+}
+
+.lime {
+    background-color: rgb(101, 189, 39);
+}
+
+.green {
+    background-color: green;
+}

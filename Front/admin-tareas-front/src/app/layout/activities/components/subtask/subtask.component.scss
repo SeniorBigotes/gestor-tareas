@@ -1,0 +1,42 @@
+@use '../../../../../styles.scss' as m;
+
+.subtasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 40rem;
+    max-height: 60rem;
+    overflow: scroll;
+
+    .subtask,
+    .add-subtask {
+        background-color: m.$color-btn-navigate;
+        border: 2px solid m.$color-navigate-hover;
+        border-radius: 10px;
+    }
+
+    .subtask {
+
+    }
+
+    .add-subtask {
+        .btn-add {
+            padding: 1rem;
+            
+            svg {
+                cursor: pointer;
+                display: inline;
+                background-color: m.$color-green;
+                border: 2px solid transparent;
+                border-radius: 50%;
+                transition: all .3s ease;
+                
+                &:hover {
+                    background-color: darken(m.$color-green, 4);
+                        box-shadow: 0 0 5px 2px lighten(m.$color-green, 10);
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+}

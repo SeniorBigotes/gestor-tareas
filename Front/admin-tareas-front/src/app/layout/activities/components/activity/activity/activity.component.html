@@ -1,1 +1,34 @@
-<p>activity works!</p>
+<div class="tasks-main mt-4">
+    <div class="task-content">
+        <h2 class="fw-bold text-uppercase">{{task.task}}</h2>
+        <p>Autor: <span>{{task.auth}}</span></p>
+        <p>Grupo: <span>{{task.group}}</span></p>
+
+        <div class="date d-flex justify-content-center gap-4">
+            <p>Inicio <span class="d-block">{{task.dateStart | date: 'dd/MM/yyyy'}}</span></p>
+            <div class="lineY"></div>
+            <p>Entrega <span class="d-block">{{task.dateEnd | date: 'dd/MM/yyyy'}}</span></p>
+        </div>
+
+        <div class="progressbar d-flex flex-column my-3">
+            <progress max="100" [value]="task.progress"></progress>
+            <span class="percentage">{{task.progress}}%</span>
+        </div>
+
+        <div class="mb-2">
+            <span class="inProcess d-inline" [ngClass]="colorTextProgressClass">{{textProgress}}</span>
+        </div>
+
+        <p class="lastUpdate my-3"> Ultima actualizacion <span class="d-block">{{task.dateUpdate | date:
+                'dd/MM/yyyy'}}</span></p>
+        <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{task.description}}</span></p>
+
+        @if(showMoreElement) {
+        <div class="more">
+            <span class="popover-personal" (click)="toggleReadMore()">
+                ...{{showMoreText}}
+            </span>
+        </div>
+        }
+    </div>
+</div> <!-- End .tasks-main -->

@@ -36,65 +36,9 @@
         
         @if(task) {
             <div class="tasks">
-                <div class="tasks-main mt-4">
-                    <div class="task-content">
-                        <h2 class="fw-bold text-uppercase">{{task.task}}</h2>
-                        <p>Autor: <span>{{task.auth}}</span></p>
-                        <p>Grupo: <span>{{task.group}}</span></p>
-
-                        <div class="date d-flex justify-content-center gap-4">
-                            <p>Inicio <span class="d-block">{{task.dateStart | date: 'dd/MM/yyyy'}}</span></p>
-                            <div class="lineY"></div>
-                            <p>Entrega <span class="d-block">{{task.dateEnd | date: 'dd/MM/yyyy'}}</span></p>
-                        </div>
-
-                        <div class="progressbar d-flex flex-column my-3">
-                            <progress max="100" [value]="task.progress"></progress>
-                            <span class="percentage">{{task.progress}}%</span>
-                        </div>
-
-                        <div class="mb-2">
-                            <span class="inProcess d-inline" [ngClass]="colorTextProgressClass">{{textProgress}}</span>
-                        </div>
-
-                        <p class="lastUpdate my-3"> Ultima actualizacion <span class="d-block">{{task.dateUpdate | date: 'dd/MM/yyyy'}}</span></p>
-                        <!-- <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{task.description}}</span></p> -->
-                        <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{task.description}}</span></p>
-
-                        @if(showMoreElement) {
-                            <div class="more">
-                                <span class="popover-personal" (click)="toggleReadMore()">
-                                    ...{{showMoreText}}
-                                </span>
-                            </div>
-                        }
-                    </div>
-                </div> <!-- End .tasks -->
-
-                <div class="subtasks">
-                    <div class="subtasks-main">
-                        @if(task.subtask) {
-                            <div class="subtask">
-
-                            </div>
-                        }
-
-                        <div class="add-subtask">
-                            <p>Agregar</p>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="32" height="32"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 5l0 14" />
-                                    <path d="M5 12l14 0" />
-                                </svg>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div> <!-- End .subtasks -->
+                <app-activity [task]="task"></app-activity>
+                <app-subtask [task]="task"></app-subtask>
+            </div> <!-- End .tasks -->
         } @else {
             <p class="text-center p-5">Seleccione una tarea</p>
         }
