@@ -42,7 +42,8 @@
         margin: auto;
 
         .tasks-main {
-            border: 1px solid black;
+            border: 2px solid m.$color-navigate-hover;
+            background-color: m.$color-btn-navigate;
             border-radius: 10px;
             text-align: center;
 
@@ -54,9 +55,13 @@
 
                 p {
                     font-weight: bold;
+                    font-size: 1.3rem;
+                    text-transform: uppercase;
                     
                     span {
                         font-weight: normal;
+                        font-size: 2rem;
+                        text-transform: none;
                     }
                 }
             }
@@ -70,15 +75,31 @@
                     content: "";
                     display: block;
                     width: 1px;
-                    height: 3rem;
+                    height: 6rem;
                     border: 1px solid m.$color-line;
                     border-radius: 50%;
                 }
             }
 
-            progress {
-                width: 30%;
-                margin: auto;
+            .progressbar {
+                .percentage {
+                    font-size: 1.4rem;
+                }
+    
+                progress {
+                    width: 30%;
+                    margin: auto;
+                }
+
+
+            }
+
+            .inProcess {
+                font-size: 1.2rem;
+                border-radius: 10px;
+                padding: 3px 1.5rem;
+                font-weight: bold;
+                color: rgb(91, 91, 91);
             }
 
             .lastUpdate {
@@ -108,4 +129,23 @@
             }
         }
     }
+}
+.red {
+    background-color: rgb(172, 0, 0);
+}
+
+.orange {
+    background-color: rgb(255, 102, 0);
+}
+
+.yellow {
+    background-color: rgb(221, 221, 0);
+}
+
+.lime {
+    background-color: rgb(101, 189, 39);
+}
+
+.green {
+    background-color: green;
 }

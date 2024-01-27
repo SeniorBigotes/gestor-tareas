@@ -34,39 +34,37 @@
             </div>
         </div>
         
-        @if(task !== undefined) {
+        @if(task) {
             <div class="tasks">
                 <div class="tasks-main mt-4">
                     <div class="task-content">
                         <h2 class="fw-bold text-uppercase">{{task.task}}</h2>
                         <p>Autor: <span>{{task.auth}}</span></p>
                         <p>Grupo: <span>{{task.group}}</span></p>
-                        <div class="date d-flex justify-content-center gap-3">
-                            <p>Inicio <span>{{task.dateStart | date: 'dd/MM/yyyy'}}</span></p>
+
+                        <div class="date d-flex justify-content-center gap-4">
+                            <p>Inicio <span class="d-block">{{task.dateStart | date: 'dd/MM/yyyy'}}</span></p>
                             <div class="lineY"></div>
-                            <p>Entrega <span>{{task.dateEnd | date: 'dd/MM/yyyy'}}</span></p>
+                            <p>Entrega <span class="d-block">{{task.dateEnd | date: 'dd/MM/yyyy'}}</span></p>
                         </div>
-                        <div class="progessbar d-flex flex-column">
+
+                        <div class="progressbar d-flex flex-column my-3">
                             <progress max="100" [value]="task.progress"></progress>
-                            <span>{{task.progress}}%</span>
+                            <span class="percentage">{{task.progress}}%</span>
                         </div>
-                        <span>@if(task.progress !== 100) { En proceso } @else { Completado }</span>
-                        <p class="lastUpdate"> Ultima actualizacion <span class="d-block">{{task.dateUpdate | date: 'dd/MM/yyyy'}}</span></p>
-                        <p class="description">Descripcion <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, quaerat atque dolorum molestias itaque ipsum odio autem delectus maxime corporis. Sit placeat necessitatibus atque dolore ducimus quisquam dignissimos nobis error.
-                            Sit dolorum blanditiis ipsam perspiciatis beatae maiores asperiores, pariatur id qui sunt non excepturi et tenetur ut quod totam. Ullam obcaecati vel consequuntur, dolore accusantium facilis harum voluptates doloribus nostrum!
-                            Quae illo voluptas labore ipsa porro facilis minima doloribus esse vel perferendis soluta alias neque quis reiciendis repellendus vero temporibus facere nam, dolore ab fuga! Earum dolorem molestias corrupti impedit?
-                            Repellendus omnis tenetur totam beatae alias sed fugit repudiandae illo cumque ipsa provident quibusdam quos odio quisquam culpa, dicta, laudantium delectus quia! Excepturi sequi sed sit autem at, facere quos.
-                            Recusandae, modi dolore explicabo minima tempore ut numquam earum fugiat in at sunt autem consequatur aperiam. Nisi sint, iure amet ducimus, labore dignissimos corporis magnam repellat quis ullam rem provident?
-                        </span></p>
+
+                        <div class="mb-2">
+                            <span class="inProcess d-inline" [ngClass]="colorTextProgressClass">{{textProgress}}</span>
+                        </div>
+
+                        <p class="lastUpdate my-3"> Ultima actualizacion <span class="d-block">{{task.dateUpdate | date: 'dd/MM/yyyy'}}</span></p>
+                        <!-- <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{task.description}}</span></p> -->
+                        <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{task.description}}</span></p>
 
                         @if(showMoreElement) {
                             <div class="more">
                                 <span class="popover-personal" (click)="toggleReadMore()">
-                                    @if(!showMore) {
-                                        ...más
-                                    } @else {
-                                        ...menos
-                                    }
+                                    ...{{showMoreText}}
                                 </span>
                             </div>
                         }
@@ -74,7 +72,27 @@
                 </div> <!-- End .tasks -->
 
                 <div class="subtasks">
+                    <div class="subtasks-main">
+                        @if(task.subtask) {
+                            <div class="subtask">
 
+                            </div>
+                        }
+
+                        <div class="add-subtask">
+                            <p>Agregar</p>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="32" height="32"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div> <!-- End .subtasks -->
         } @else {
