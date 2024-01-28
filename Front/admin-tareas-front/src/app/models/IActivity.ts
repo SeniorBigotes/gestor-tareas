@@ -9,7 +9,7 @@ export interface Activities {
     dateUpdate: Date,
     progress: number,
     complete: boolean,
-    auth: number
-    group: boolean,
-    subtask?: Subtask[]
+    auth: number /* */
+    group: boolean, /* */
+    subtask?: Subtask[] /* Eliminar */
 }

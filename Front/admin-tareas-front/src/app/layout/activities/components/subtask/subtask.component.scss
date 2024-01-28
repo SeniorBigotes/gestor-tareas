@@ -1,12 +1,80 @@
 @use '../../../../../styles.scss' as m;
 
+.line {
+    display: block;
+    content: "";
+    width: 90%;
+    height: 1px;
+    border: 1px solid m.$color-line;
+    border-radius: 50%;
+    margin: auto;
+}
+
 .subtasks {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    gap: 1rem;
     height: 40rem;
     max-height: 60rem;
     overflow: scroll;
+
+    @include m.pc {
+        max-height: 70rem;
+        height: auto;
+    }
+
+    .subtasks-main {
+        width: 98%;
+        margin: auto;
+    }
+
+    .date,
+    .user {
+        @include m.pc {
+            text-align: center;
+
+            span {
+                display: block;
+            }
+        }
+    }
+
+    .subtask-content {
+        width: 90%;
+        margin: .5rem auto;
+        
+        .priority {
+            p {
+                padding: .3rem 1.5rem;
+                border-radius: 10px;
+                color: white;
+            }
+
+            .complete {
+                color: black;
+            }
+        }
+
+        .title-subtask {
+            font-size: 1.7rem;
+        }
+
+        .footer {
+            .btns {
+                div {
+                    padding: .5rem;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    transition: background-color .3s ease-in-out;
+
+                    &:hover {
+                        background-color: m.$color-navigate-hover;
+                    }
+                }
+            }
+        }
+    }
 
     .subtask,
     .add-subtask {
@@ -15,11 +83,10 @@
         border-radius: 10px;
     }
 
-    .subtask {
-
-    }
-
     .add-subtask {
+        .add-text {
+            font-size: 1.6rem;
+        }
         .btn-add {
             padding: 1rem;
             
@@ -33,10 +100,47 @@
                 
                 &:hover {
                     background-color: darken(m.$color-green, 4);
-                        box-shadow: 0 0 5px 2px lighten(m.$color-green, 10);
+                    box-shadow: 0 0 5px 2px lighten(m.$color-green, 10);
                     transform: scale(1.05);
                 }
             }
         }
     }
+}
+
+p {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    span {
+        font-weight: normal;
+        font-size: 1.7rem;
+        text-transform: none;
+    }
+}
+
+.red {
+    background-color: m.$color-red;
+}
+
+.yellow {
+    background-color: m.$color-yellow;
+}
+
+.blue {
+    background-color: m.$color-blue;
+}
+
+.white {
+    background-color: #fff;
+    color: black !important;
+    font-weight: bold;
+}
+
+.checked {
+    // box-shadow: 0 0 7px 2px rgb(74, 121, 215);
+    box-shadow: 0 0 7px 2px m.$color-blue;
+    border: 2px solid lighten(m.$color-blue, 20) !important;
+    background-color: lighten(m.$color-blue, 34) !important;
 }

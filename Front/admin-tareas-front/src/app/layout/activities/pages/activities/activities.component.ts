@@ -21,11 +21,17 @@ export class ActivitiesComponent implements OnInit {
   task?: Activities;
 
   constructor(private appService: AppService,
-              private activities: ActivitiesService,
-              private cdr: ChangeDetectorRef
+              private activities: ActivitiesService
               ) {}
 
   ngOnInit(): void {
     this.appService.getTasks().subscribe(task => { if(task[0]) this.task = task[0] });
+    
   } // end ngOnInit()
+
+  showLine(): boolean {
+    const screenWidth = this.activities.getScreenWidth()
+    if(screenWidth > 600) return false;
+    return true;
+  }
 }

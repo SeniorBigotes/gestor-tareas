@@ -30,4 +30,8 @@ export class ActivitiesService {
   toggleShowMore(showMore: boolean): void {
     this.showMore.next(showMore);
   }
+
+  getScreenWidth(): number {
+    return window.innerWidth;
+  }
 }

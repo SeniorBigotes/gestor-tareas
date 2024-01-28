@@ -4,6 +4,7 @@ import { UserLogoComponent } from '../../../../shared/user-logo/user-logo.compon
 import { NotifyComponent } from '../../../../shared/notify/notify.component';
 import { HomeService } from '../../home.service';
 import { BusquedaComponent } from '../../../../shared/busqueda/busqueda.component';
+import { AppService } from '../../../../app.service';
 
 @Component({
   selector: 'app-header',
@@ -17,15 +18,15 @@ export class HeaderComponent {
   showNavigate: boolean = false;
 
 
-  constructor(private homeService: HomeService) {}
+  constructor(private appService: AppService) {}
   
    ngOnInit(): void {
-    this.homeService.showNavigate$.subscribe(show => this.showNavigate = show);
+    this.appService.showNavigate$.subscribe(show => this.showNavigate = show);
    }
 
   // menu / navegacion
   onClick(): void {  
-    this.homeService.navigate(!this.showNavigate);
+    this.appService.navigate(!this.showNavigate);
   }
 
 }

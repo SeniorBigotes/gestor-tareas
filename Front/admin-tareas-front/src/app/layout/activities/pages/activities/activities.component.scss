@@ -40,5 +40,13 @@
     .tasks {
         max-width: 60rem;
         margin: auto;
+
+        @include m.pc {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            max-width: 100rem;
+            margin: auto;        
+        }
     }
 }

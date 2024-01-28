@@ -37,6 +37,7 @@
         @if(task) {
             <div class="tasks">
                 <app-activity [task]="task"></app-activity>
+                @if(showLine()) { <div class="line"></div> }
                 <app-subtask [task]="task"></app-subtask>
             </div> <!-- End .tasks -->
         } @else {

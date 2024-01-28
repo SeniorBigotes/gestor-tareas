@@ -1,11 +1,13 @@
 export interface Subtask {
     id: number,
     task: string,
-    notes?: string
+    notes?: number /**/
     priority: string,
     dateStart: Date,
     dateEnd: Date,
     dateComplete: Date,
     complete: boolean,
-    auth: number,
+    activityID: number,
+    auth: number, /* */
+    assignedTo: number, /* */
 }

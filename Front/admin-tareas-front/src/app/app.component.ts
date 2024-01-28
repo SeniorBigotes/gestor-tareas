@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { modules } from './modules';
-import { HomeService } from './layout/home/home.service';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,9 @@ export class AppComponent implements OnInit {
 
   showNavigate: boolean = false;
 
-  constructor(private homeService: HomeService) {}
+  constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-    this.homeService.showNavigate$.subscribe(show => this.showNavigate = show);
+    this.appService.showNavigate$.subscribe(show => this.showNavigate = show);
   }
 }
