@@ -8,7 +8,7 @@ export interface User {
     email: string,
     phone?: string,
     photoUrl: string,
-    rol?: string,
+    specialization: string,
     state: string,
     country: string,
     registrationDate: Date,

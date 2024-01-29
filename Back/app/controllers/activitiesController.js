@@ -17,7 +17,7 @@ exports.createActivity = async (req, res) => {
     try {
         const body = req.body;
         const activity = await activityService.createDataActivity(body);
-        res.json({message: 'Successfully created activity', value: activity});
+        res.json({message: `Activity with id ${activity.id} successfully created`});
     } catch (e) {
         res.status(500).json({message: 'Error when creating the activity', error: e.message});
     }
@@ -30,7 +30,7 @@ exports.updateActivity = async (req, res) => {
         const id = req.params.id;
         const activity = await activityService.updateDataActivity(id, body);
         if(!activity) res.status(404).json({message: 'Activity not found'});
-        res.json({message: 'Updated activity', value: activity});
+        res.json({message: `Activity with id ${activity.id} has been updated`});
     } catch(e) {
         res.status(500).json({message: 'Error updating activity', error: e.message});
     }

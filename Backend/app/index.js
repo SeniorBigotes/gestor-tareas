@@ -24,8 +24,8 @@ sequelize.authenticate()
     .then(() => console.log('\nConexion a la Base de Datos establecida\n'))
     .catch(e => console.log(`\nError de conexion a la Base de Datos: ${e}\n`));
 
-sequelize.sync({force: true})
-// sequelize.sync()
+// sequelize.sync({force: true})
+sequelize.sync()
     .then(() => console.log('\nBase de datos sincronizada\n'))
     .catch(e => console.log(`\nError de sincronizacion a la Base de Datos: ${e}\n`));
 

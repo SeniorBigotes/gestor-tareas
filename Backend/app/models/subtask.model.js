@@ -2,11 +2,12 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
 const Activity = require('./activity.model');
 
-const Subtask = sequelize.define('subtasks', {
+const Subtask = sequelize.define('subtask', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        unique: true,
         allowNull: false,
     },
     task: {
@@ -20,28 +21,36 @@ const Subtask = sequelize.define('subtasks', {
     dateStart: {
         type: DataTypes.DATE,
         allowNull: false,
+        field: 'date_start',
     },
     dateEnd: {
         type: DataTypes.DATE,
         allowNull: false,
+        field: 'date_end',
     },
     dateComplete: {
         type: DataTypes.DATE,
+        field: 'date_complete',
     },
     complete: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
-    activityID: {
+    // Por asignar
+    activityID: { // activity
         type: DataTypes.INTEGER,
         allowNull: false,
+        field: 'activity_id',
+    },
+    auth: { // user
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    assignedTo: { // user
+        type: DataTypes.INTEGER,
+        field: 'assigned_to',
     }
-});
-
-Subtask.belongsTo(Activity, {
-    foreignKey: 'activityID',
-    as: 'activity',
-});
+}, { timestamps: false });
 
 Subtask.sync();
 
