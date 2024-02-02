@@ -51,4 +51,37 @@ VALUES
   ('Grupo de Deportes', 'Participar en actividades deportivas y mantenerse activo', 'https://example.com/sports-group.jpg', '789GHI', '2022-03-20', false),
   ('Club de Cocina', 'Compartir recetas y experiencias culinarias', 'https://example.com/cooking-club.jpg', '456JKL', '2022-04-01', true),
   ('Grupo de Música', 'Amantes de la música que comparten sus gustos y descubrimientos', 'https://example.com/music-group.jpg', 'MNO321', '2022-04-15', false);
+  
+/*participants*/
+INSERT INTO participants_groups (user_id, group_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(1, 3),
+(2, 3),
+(1, 4),
+(1, 5),
+(2, 5),
+(1, 6),
+(2, 6);
 
+/*auths*/
+INSERT INTO participants_groups (user_id, group_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(1, 2),
+(2, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(2, 5),
+(1, 6),
+(2, 6);

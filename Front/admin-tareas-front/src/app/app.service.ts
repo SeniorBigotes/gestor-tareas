@@ -4,15 +4,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Activities } from './models/IActivity';
 import { Group } from './models/IGroup';
 import { User } from './models/IUser';
+import { environment } from '../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  private activities = "assets/activitiesDB.json";
-  private contacts = 'assets/usersDB.json';
-  private groups = 'assets/groupsDB.json';
+  private activitiesUrl = environment.API_ACTIVITY;
+  private usersUrl = environment.API_USERS;
+  private groupsUrl = environment.API_GROUPS;
+  private participants = environment.API_PARTICIPANTS_GROUPS;
 
   // Navegacion (Menu - nav) navigate();
   private showNavigate = new BehaviorSubject<boolean>(false);
@@ -21,19 +23,23 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   getTasks(): Observable<any> {
-    return this.http.get<Activities>(this.activities);
+    return this.http.get<Activities>(this.activitiesUrl);
   }
 
   putSubtasks(task: Activities): Observable<any> {
-    return this.http.put<Activities>(this.activities, task);
+    return this.http.put<Activities>(this.activitiesUrl, task);
   }
 
   getGroups(): Observable<any> {
-    return this.http.get<Group>(this.groups);
+    return this.http.get<Group>(this.groupsUrl);
+  }
+
+  getParticipantsGroup(id: number): Observable<any> {
+    return this.http.get<any>(`${this.groupsUrl}/${id}/${this.participants}`);
   }
 
   getUsers(): Observable<any> {
-    return this.http.get<User>(this.contacts);
+    return this.http.get<User>(this.usersUrl);
   }
 
   // Navegacion (Menu - nav)

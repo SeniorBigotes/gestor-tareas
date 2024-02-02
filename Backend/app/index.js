@@ -3,7 +3,12 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 
 const activities = require('./routes/activities');
+const user = require('./routes/user');
+const group = require('./routes/group');
+
 const sequelize = require('./config/sequelize');
+
+const { authenticate, syncronize } = require('./helpers/helper');
 
 // necesario para crear los modelos en bd
 const models = require('./models/index');
@@ -13,21 +18,21 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // permitir la conexion del back al front
+app.use(express.json()); // convierte los datos recibidos en formato json
 
 // CRUD
 app.use('/api', activities);
+app.use('/api', user);
+app.use('/api', group);
 
 // Conexion a la base de datos
-sequelize.authenticate()
-    .then(() => console.log('\nConexion a la Base de Datos establecida\n'))
-    .catch(e => console.log(`\nError de conexion a la Base de Datos: ${e}\n`));
+authenticate(sequelize);
 
-// sequelize.sync({force: true})
-sequelize.sync()
-    .then(() => console.log('\nBase de datos sincronizada\n'))
-    .catch(e => console.log(`\nError de sincronizacion a la Base de Datos: ${e}\n`));
+// Sincronizar a la base de datos
+syncronize(sequelize);
 
 // Levantar el backend
 app.listen(PORT, () => console.log(`Activos en el puerto ${PORT}`));
+
+

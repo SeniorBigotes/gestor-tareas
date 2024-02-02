@@ -8,9 +8,5 @@ export interface Group {
   photoUrl: string,
   invitationCode?: string,
   creationDate: Date,
-  activities: Activities[], 
   privacy: boolean, // miembros_: true vista publica | false vista solo participantes
-  events: Event[],
-  authors: number[],
-  participants: number[]
 }

@@ -1,18 +1,18 @@
 const { Activity } = require("../models");
 
-// visualizar una actividad
+// viewActivity
 async function viewActivity(id) {{
     const activity = await Activity.findByPk(id);
     return activity ? activity : null;
 }}
 
-// visualizar actividades
+// viewActivities
 async function viewActivities() {
     const activities = await Activity.findAll();
-    return activities;
+    return activities ? activities : null;
 }
 
-// Crear actividad
+// createActivity
 async function createActivity(body) {
     const { task, description, dateStart, dateEnd, dateUpdate, progress, complete, auth, groupID } = body;
     const newActivity = { task, description, dateStart, dateEnd, dateUpdate, progress, complete, auth, groupID }
@@ -21,7 +21,7 @@ async function createActivity(body) {
     return activity ? activity : null;
 }
 
-// actualizar actividad
+// updateActivity
 async function updateActivity(id, body) {
     const activity = await viewActivity(id);
     if(!activity) return null;

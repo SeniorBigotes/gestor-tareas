@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Activities } from '../../../../models/IActivity';
-import { DataCarousel } from '../../../home/Interfaces';
+import { DataCarousel } from '../../../home/utils/Interfaces';
 import { AppService } from '../../../../app.service';
 import { CarouselComponent } from '../../../../shared/carousel/components/carousel.component';
 

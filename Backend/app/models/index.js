@@ -5,6 +5,8 @@ const UserData = require('./userData.model');
 const relations = require('./relations/relations');
 const Group = require('./group.model');
 const Event = require('./event.model');
+const AuthGroup = require('./authGroup.model');
+const ParticipantGroup = require('./participantsGroup.model');
 
 relations();
 
@@ -13,5 +15,7 @@ module.exports = {
     Subtask,
     UserData,
     Group,
-    Event
+    Event,
+    AuthGroup,
+    ParticipantGroup,
 }

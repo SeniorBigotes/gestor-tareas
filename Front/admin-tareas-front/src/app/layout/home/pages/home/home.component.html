@@ -8,7 +8,7 @@
                 <p>Mis actividades</p>
                 <button class="btn btn-color">Nuevo</button>
             </div>
-            @if(dataLoadActivities) {
+            @if(carouselItemsActivities[0]) {
                 <app-carousel [items]="carouselItemsActivities"></app-carousel>
             }
         </div>
@@ -18,7 +18,7 @@
                 <p>Mis grupos</p>
                 <button class="btn btn-color">Crear</button>
             </div>
-            @if(dataLoadGroups) {
+            @if(carouselItemsGroups[0]) {
                 <app-carousel [items]="carouselItemsGroups"></app-carousel>
             }
         </div>
@@ -28,8 +28,8 @@
                 <p>Mis contactos</p>
                 <button class="btn btn-color">Agregar</button>
             </div>
-            @if(dataLoadContacts) {
-                <app-carousel [items]="carouselItemsContacts"></app-carousel>
+            @if(carouselItemsUsers[0]) {
+                <app-carousel [items]="carouselItemsUsers"></app-carousel>
             }
         </div>
     </main>

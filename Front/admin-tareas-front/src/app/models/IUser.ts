@@ -1,11 +1,9 @@
 export interface User {
     id: number,
-    username: string,
-    password: string,
-    token: string,
-    fullName: string,
+    name: string,
+    lastName: string,
+    maidenName?: string,
     gender: string,
-    email: string,
     phone?: string,
     photoUrl: string,
     specialization: string,
@@ -14,5 +12,4 @@ export interface User {
     registrationDate: Date,
     lastConnection: Date,
     notifications: boolean,
-    groups?: number,
 }

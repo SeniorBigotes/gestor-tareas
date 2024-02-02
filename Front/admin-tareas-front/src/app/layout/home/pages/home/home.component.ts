@@ -1,113 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivitiesComponent } from '../../../activities/pages/activities/activities.component';
-import { HttpClientModule } from '@angular/common/http';
-import { Activities } from '../../../../models/IActivity';
-import { User } from '../../../../models/IUser';
-import { Group } from '../../../../models/IGroup';
-import { CarouselItems } from '../../Interfaces';
+import { DataCarousel } from '../../utils/Interfaces';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CarouselComponent } from '../../../../shared/carousel/components/carousel.component';
 import { AppService } from '../../../../app.service';
+import { GroupClass } from '../../classes/GroupClass';
+import { Subscription } from 'rxjs';
+import { UserClass } from '../../classes/UserClass';
+import { ActivityClass } from '../../classes/ActivityClass';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ActivitiesComponent, CarouselComponent, 
-            HttpClientModule, HeaderComponent],
+  imports: [ActivitiesComponent, CarouselComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  dataCarousel?: {
-    name: string,
-    info: any,
-    footer: any,
-    progressbar?: boolean,
-    photo?: boolean,
-  }
+  // subscripciones
+  private groupSub!: Subscription;
+  private userSub!: Subscription;
+  private activitySub!: Subscription;
 
-  // Carrusel
-  carouselItemsActivities: CarouselItems[] = [];
-  dataLoadActivities: boolean = false;
+  // datos del Carrusel
+  carouselItemsActivities: DataCarousel[] = [];
+  carouselItemsGroups: DataCarousel[] = [];
+  carouselItemsUsers: DataCarousel[] = [];
 
-  carouselItemsGroups: CarouselItems[] = [];
-  dataLoadGroups: boolean = false;
-  
-  carouselItemsContacts: CarouselItems[] = [];
-  dataLoadContacts: boolean = false;
-
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService,
+              private activityClass: ActivityClass,
+              private groupClass: GroupClass,
+              private userClass: UserClass){}
 
   ngOnInit(): void {
-    /* pasar datos al carrusel */
+    
     // Actividades
-    this.appService.getTasks().subscribe({
-      next: tasks => {
-        tasks ? this.transferActivitiesCarousel(tasks) : this.carouselItemsActivities.push(null);
-        this.dataLoadActivities = true;
-      },
-      error: () => { this.dataLoadActivities = this.handleError('error') }
-    });
+    this.activitySub = this.activityClass.findAllItems(this.appService.getTasks()).
+      subscribe(dataCarousel => this.carouselItemsActivities = dataCarousel);
 
     // Grupos
-    this.appService.getGroups().subscribe({
-      next: groups => {
-        groups ? this.transferGroupsCarousel(groups) : this.carouselItemsGroups.push(null);
-        this.dataLoadGroups = true;
-    },
-    error: () => { this.dataLoadGroups = this.handleError('error')}});
+    this.groupSub = this.groupClass.findAllItems(this.appService.getGroups()).
+      subscribe(dataCarousel => this.carouselItemsGroups = dataCarousel);
 
-    // Contactos
-    this.appService.getUsers().subscribe({
-      next: users => {
-        users ? this.transferContactsCarousel(users) : this.carouselItemsContacts.push(null);
-        this.dataLoadContacts = true;
-    },
-    error: () => { this.dataLoadContacts = this.handleError('error')}});
+    // Usuarios
+    this.userSub = this.userClass.findAllItems(this.appService.getUsers()).
+      subscribe(dataCarousel => this.carouselItemsUsers = dataCarousel);
+
   } // end ngOnInit()
 
-  // manejar errores
-  private handleError(str: string): boolean {
-    this.carouselItemsActivities.push(str);
-    return true;
-  }
-
-  /* TRANSFERIR DATOS AL CARRUSEL */
-  // actividades
-  private transferActivitiesCarousel(projects: Activities[]): void {
-    for(let task of projects) {
-        this.dataCarousel = {
-          name: task.task,
-          info: task.dateEnd,
-          footer: task.progress,
-          progressbar: true,
-        }
-        this.carouselItemsActivities.push(this.dataCarousel);
-      }
-  }
-  // contactos
-  private transferContactsCarousel(users: User[]): void {
-    for(let user of users) {
-      this.dataCarousel = {
-        name: user.photoUrl,
-        info: user.username,
-        footer: user.rol,
-        photo: true
-      }
-      this.carouselItemsContacts.push(this.dataCarousel);
-    }
-  }
-  // grupos
-  private transferGroupsCarousel(groups: Group[]): void {
-    for(let group of groups) {
-      this.dataCarousel = {
-        name: group.photoUrl,
-        info: group.name,
-        footer: `${group.participants.length} participantes`,
-        photo: true
-      }
-      this.carouselItemsGroups.push(this.dataCarousel);
-    }
+  ngOnDestroy(): void {
+    this.groupSub?.unsubscribe();
+    this.userSub?.unsubscribe();
+    this.activitySub?.unsubscribe();
   }
 }
