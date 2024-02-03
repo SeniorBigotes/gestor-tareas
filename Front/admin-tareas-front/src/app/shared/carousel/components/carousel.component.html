@@ -2,7 +2,7 @@
     <div class="carousel-container">
         <div class="carousel-elements">
             @for (item of displayedItems; track item.id) {
-                <div class="item">
+                <div class="item" (click)="onClick(item.id)">
                     @if(item.photo) {
                         <!-- <img class="photo" [src]="item.name" [alt]="item.info"> -->
                         <img class="photo" src="assets/img.jpeg" [alt]="item.info">

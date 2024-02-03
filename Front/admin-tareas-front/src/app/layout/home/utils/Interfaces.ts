@@ -4,6 +4,7 @@ import { Group } from "../../../models/IGroup";
 import { User } from "../../../models/IUser";
 
 export interface DataCarousel {
+    id: number
     name: string,
     info: any,
     footer: any,

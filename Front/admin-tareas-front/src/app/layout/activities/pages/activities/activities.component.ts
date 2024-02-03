@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { Activities } from '../../../../models/IActivity';
 import { CarouselActivitiesComponent } from '../../components/carousel-activities/carousel-activities.component';
@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { ActivitiesService } from '../../activities.service';
 import { ActivityComponent } from '../../components/activity/activity/activity.component';
 import { SubtaskComponent } from '../../components/subtask/subtask.component';
+import { CarouselService } from '../../../../shared/carousel/carousel.service';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-activities',
@@ -18,20 +20,24 @@ import { SubtaskComponent } from '../../components/subtask/subtask.component';
 })
 export class ActivitiesComponent implements OnInit {
 
-  task?: Activities;
+  activity?: Activities | null;
+  showLine: boolean = this.activitiesService.getScreenWidth() < 600;
 
   constructor(private appService: AppService,
-              private activities: ActivitiesService
+              private activitiesService: ActivitiesService,
+              private carouselService: CarouselService
               ) {}
 
   ngOnInit(): void {
-    this.appService.getTasks().subscribe(task => { if(task[0]) this.task = task[0] });
-    
+    this.carouselService.idSelectedActivity$.pipe(
+      switchMap(id => id ? this.appService.getActivity(id) : of(null)),
+    ).subscribe(activity => this.setActivity(activity));    
   } // end ngOnInit()
 
-  showLine(): boolean {
-    const screenWidth = this.activities.getScreenWidth()
-    if(screenWidth > 600) return false;
-    return true;
+  private setActivity(activity: Activities | null): void {
+    if(activity) {
+      this.activity = activity;
+      this.activitiesService.setActivity(activity);
+    }
   }
 }

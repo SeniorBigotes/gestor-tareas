@@ -1,27 +1,27 @@
 <div class="tasks-main mt-4">
     <div class="task-content">
-        <h2 class="fw-bold text-uppercase">{{task.task}}</h2>
-        <p>Autor: <span>{{task.auth}}</span></p>
-        <p>Grupo: <span>{{task.group}}</span></p>
+        <h2 class="fw-bold text-uppercase">{{activity.task}}</h2>
+        <p>Autor: <span>{{authUsername}}</span></p>
+        <p>Grupo: <span>{{activity.group}}</span></p>
 
         <div class="date d-flex justify-content-center gap-4">
-            <p>Inicio <span class="d-block">{{task.dateStart | date: 'dd/MM/yyyy'}}</span></p>
+            <p>Inicio <span class="d-block">{{activity.dateStart | date: 'dd/MM/yyyy'}}</span></p>
             <div class="lineY"></div>
-            <p>Entrega <span class="d-block">{{task.dateEnd | date: 'dd/MM/yyyy'}}</span></p>
+            <p>Entrega <span class="d-block">{{activity.dateEnd | date: 'dd/MM/yyyy'}}</span></p>
         </div>
 
         <div class="progressbar d-flex flex-column my-3">
-            <progress max="100" [value]="task.progress"></progress>
-            <span class="percentage">{{task.progress}}%</span>
+            <progress max="100" [value]="activity.progress"></progress>
+            <span class="percentage">{{activity.progress}}%</span>
         </div>
 
         <div class="mb-2">
             <span class="inProcess d-inline" [ngClass]="colorTextProgressClass">{{textProgress}}</span>
         </div>
 
-        <p class="lastUpdate my-3"> Ultima actualizacion <span class="d-block">{{task.dateUpdate | date:
+        <p class="lastUpdate my-3"> Ultima actualizacion <span class="d-block">{{activity.dateUpdate | date:
                 'dd/MM/yyyy'}}</span></p>
-        <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{task.description}}</span></p>
+        <p class="description">Descripción <span #more class="d-block mt-2" [ngClass]="showMore ? 'show' : 'hidden'">{{activity.description}}</span></p>
 
         @if(showMoreElement) {
         <div class="more">

@@ -1,6 +1,6 @@
 import { Observable, Subject, map } from "rxjs";
-import { User } from "../../../models/IUser";
-import { DataCarousel, ProcessDataCarousel } from "../utils/Interfaces";
+import { User } from "../models/IUser";
+import { DataCarousel, ProcessDataCarousel } from "../layout/home/utils/Interfaces";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -21,6 +21,7 @@ export class UserClass implements ProcessDataCarousel {
     // Datos para el carrusel
     private selectItems(users: User[]): DataCarousel[] {
         this.items = users.map(user => ({
+            id: user.id,
             name: user.photoUrl,
             info: user.name,
             footer: user.specialization,

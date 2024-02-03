@@ -1,14 +1,18 @@
 import { ChangeDetectorRef, ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Activities } from '../../models/IActivity';
+import { User } from '../../models/IUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivitiesService {
 
-  private showMore: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private showMoreElement: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private showMore = new BehaviorSubject<boolean>(false);
+  private showMoreElement = new BehaviorSubject<boolean>(false);
+  private getActivity = new BehaviorSubject<Activities | undefined>(undefined);
+
+
 
   constructor() { }
   
@@ -18,6 +22,10 @@ export class ActivitiesService {
   }
   get $showMoreElement(): Observable<boolean> {
     return this.showMoreElement.asObservable();
+  }
+
+  get $getActivity(): Observable<Activities | undefined> {
+    return this.getActivity.asObservable();
   }
 
   checkOverflow(contentElement?: ElementRef) {    
@@ -33,5 +41,9 @@ export class ActivitiesService {
 
   getScreenWidth(): number {
     return window.innerWidth;
+  }
+
+  setActivity(activity: Activities): void {
+    this.getActivity.next(activity);
   }
 }

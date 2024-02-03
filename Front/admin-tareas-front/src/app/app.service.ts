@@ -26,6 +26,10 @@ export class AppService {
     return this.http.get<Activities>(this.activitiesUrl);
   }
 
+  getActivity(id: number): Observable<Activities> {
+    return this.http.get<Activities>(`${this.activitiesUrl}/${id}`);
+  }
+
   putSubtasks(task: Activities): Observable<any> {
     return this.http.put<Activities>(this.activitiesUrl, task);
   }
@@ -40,6 +44,10 @@ export class AppService {
 
   getUsers(): Observable<any> {
     return this.http.get<User>(this.usersUrl);
+  }
+
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/${id}`);
   }
 
   // Navegacion (Menu - nav)

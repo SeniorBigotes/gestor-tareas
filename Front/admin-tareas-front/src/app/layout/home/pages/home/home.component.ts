@@ -4,10 +4,10 @@ import { DataCarousel } from '../../utils/Interfaces';
 import { HeaderComponent } from '../../components/header/header.component';
 import { CarouselComponent } from '../../../../shared/carousel/components/carousel.component';
 import { AppService } from '../../../../app.service';
-import { GroupClass } from '../../classes/GroupClass';
+import { GroupClass } from '../../../../classes/group.class';
 import { Subscription } from 'rxjs';
-import { UserClass } from '../../classes/UserClass';
-import { ActivityClass } from '../../classes/ActivityClass';
+import { UserClass } from '../../../../classes/user.class';
+import { ActivityClass } from '../../../../classes/activity.class';
 
 @Component({
   selector: 'app-home',

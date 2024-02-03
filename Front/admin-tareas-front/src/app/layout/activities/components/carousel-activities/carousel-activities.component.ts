@@ -26,6 +26,7 @@ export class CarouselActivitiesComponent {
   private convertData(tasks: Activities[]): void {
     for(let task of tasks) {
       this.dataCarousel = {
+        id: task.id,
         name: task.task,
         info: task.dateEnd,
         footer: task.progress,

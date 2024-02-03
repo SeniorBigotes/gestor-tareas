@@ -2,6 +2,9 @@ import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } fr
 import { ActivitiesService } from '../../../activities.service';
 import { Activities } from '../../../../../models/IActivity';
 import { CommonModule } from '@angular/common';
+import { User } from '../../../../../models/IUser';
+import { AppService } from '../../../../../app.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-activity',
@@ -19,7 +22,7 @@ export class ActivityComponent implements OnInit {
   @ViewChild('more', {static: false}) set content(content: ElementRef) {
     if(content) {
       this.contentElement = content;
-      this.activities.checkOverflow(this.contentElement);
+      this.activitiesService.checkOverflow(this.contentElement);
     }
   };
   showMore: boolean = false;
@@ -27,18 +30,27 @@ export class ActivityComponent implements OnInit {
   showMoreText: string = '';
   /* fin de función "...más" */
 
-  @Input() task!: Activities; 
+  @Input() activity!: Activities;
+  authUsername!: string;
 
   colorTextProgressClass: string = '';
   textProgress: string = '';
 
-  constructor(private activities: ActivitiesService,
+  constructor(private activitiesService: ActivitiesService,
+              private appService: AppService,
               private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.valueProgressbarColor(this.task);
-    this.activities.$showMore.subscribe(show => this.method$ShowMore(show));
-    this.activities.$showMoreElement.subscribe(show => this.method$ShowMoreElement(show));
+    this.activitiesService.$getActivity.subscribe(activity => {
+      if (activity) {
+        this.activity = activity;
+        this.appService.getUser(activity.auth).subscribe(user => this.authUsername = user.name)
+      }
+    });
+    
+    this.valueProgressbarColor(this.activity);
+    this.activitiesService.$showMore.subscribe(show => this.method$ShowMore(show));
+    this.activitiesService.$showMoreElement.subscribe(show => this.method$ShowMoreElement(show));
   } // End ngOnInit();
 
   private method$ShowMore(show: boolean, ): void {
@@ -53,7 +65,7 @@ export class ActivityComponent implements OnInit {
   
   // en html .more
   toggleReadMore() {
-    this.activities.toggleShowMore(!this.showMore);
+    this.activitiesService.toggleShowMore(!this.showMore);
   }
 
   valueProgressbarColor(task: Activities): void {
@@ -72,5 +84,4 @@ export class ActivityComponent implements OnInit {
     this.colorTextProgressClass = cssClass;
     this.textProgress = txt;
   }
-
 }

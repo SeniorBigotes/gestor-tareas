@@ -1,6 +1,6 @@
 import { Observable, map } from "rxjs";
-import { Group } from "../../../models/IGroup";
-import { DataCarousel, ProcessDataCarousel } from "../utils/Interfaces";
+import { Group } from "../models/IGroup";
+import { DataCarousel, ProcessDataCarousel } from "../layout/home/utils/Interfaces";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -21,6 +21,7 @@ export class GroupClass implements ProcessDataCarousel {
     // Datos para el carrusel
     private selectItems(groups: Group[]): DataCarousel[] {
         this.items = groups.map(group => ({
+            id: group.id,
             name: group.photoUrl,
             info: group.name,
             footer: this.isPrivate(group.privacy),

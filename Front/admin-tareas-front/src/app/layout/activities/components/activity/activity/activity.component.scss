@@ -6,6 +6,12 @@
     border-radius: 10px;
     text-align: center;
 
+    @include m.pc {
+        min-width: 40rem;
+        max-width: 60rem;
+        margin: auto;
+    }
+
     .task-content {
         display: grid;
         gap: 1rem;

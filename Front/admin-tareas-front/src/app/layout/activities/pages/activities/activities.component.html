@@ -34,11 +34,11 @@
             </div>
         </div>
         
-        @if(task) {
+        @if(activity) {
             <div class="tasks">
-                <app-activity [task]="task"></app-activity>
-                @if(showLine()) { <div class="line"></div> }
-                <app-subtask [task]="task"></app-subtask>
+                <app-activity [activity]="activity"></app-activity>
+                @if(showLine) { <div class="line"></div> }
+                <app-subtask [task]="activity"></app-subtask>
             </div> <!-- End .tasks -->
         } @else {
             <p class="text-center p-5">Seleccione una tarea</p>

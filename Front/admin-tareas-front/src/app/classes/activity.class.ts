@@ -1,6 +1,6 @@
 import { Observable, map } from "rxjs";
-import { Activities } from "../../../models/IActivity";
-import { DataCarousel, ProcessDataCarousel } from "../utils/Interfaces";
+import { Activities } from "../models/IActivity";
+import { DataCarousel, ProcessDataCarousel } from "../layout/home/utils/Interfaces";
 import { Injectable } from "@angular/core";
 
 @Injectable({
@@ -21,6 +21,7 @@ export class ActivityClass implements ProcessDataCarousel {
     // Datos para el carrusel
     private selectItems(activities: Activities[]): DataCarousel[] {
         this.items = activities.map(activity => ({
+            id: activity.id,
             name: activity.task,
             info: activity.dateEnd,
             footer: activity.progress,

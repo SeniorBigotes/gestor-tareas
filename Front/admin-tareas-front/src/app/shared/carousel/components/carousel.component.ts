@@ -65,6 +65,10 @@ export class CarouselComponent implements OnInit {
     window.location.reload();
   }
 
+  onClick(id: number): void {
+    this.carouselService.updateID(id);
+  }
+
   private handleError(): void {
     if(this.items[0] === null || this.items[0] === 'error') {
       if(this.items[0] === 'error') this.error = true;

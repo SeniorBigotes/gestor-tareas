@@ -26,7 +26,13 @@
 
     .subtasks-main {
         width: 98%;
-        margin: auto;
+        margin: 0 auto;
+
+        @include m.pc {
+            min-width: 40rem;
+            max-width: 60rem;
+            margin: auto;
+        }
     }
 
     .date,
