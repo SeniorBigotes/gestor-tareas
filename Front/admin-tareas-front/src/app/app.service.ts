@@ -5,6 +5,7 @@ import { Activities } from './models/IActivity';
 import { Group } from './models/IGroup';
 import { User } from './models/IUser';
 import { environment } from '../enviroments/environment';
+import { Subtask } from './models/ISubtask';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { environment } from '../enviroments/environment';
 export class AppService {
 
   private activitiesUrl = environment.API_ACTIVITY;
+  private subtasksUrl = environment.API_SUBTASKS;
   private usersUrl = environment.API_USERS;
   private groupsUrl = environment.API_GROUPS;
   private participants = environment.API_PARTICIPANTS_GROUPS;
@@ -28,6 +30,10 @@ export class AppService {
 
   getActivity(id: number): Observable<Activities> {
     return this.http.get<Activities>(`${this.activitiesUrl}/${id}`);
+  }
+
+  getSubtasks(id: number): Observable<any> {
+    return this.http.get<Subtask>(`${this.subtasksUrl}/${id}`);
   }
 
   putSubtasks(task: Activities): Observable<any> {

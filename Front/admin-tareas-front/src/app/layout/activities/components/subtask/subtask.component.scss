@@ -17,7 +17,7 @@
     gap: 1rem;
     height: 40rem;
     max-height: 60rem;
-    overflow: scroll;
+    overflow: auto;
 
     @include m.pc {
         max-height: 70rem;

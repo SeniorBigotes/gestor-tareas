@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 
 const activities = require('./routes/activities');
+const subtask = require('./routes/subtask');
 const user = require('./routes/user');
 const group = require('./routes/group');
 
@@ -23,6 +24,7 @@ app.use(express.json()); // convierte los datos recibidos en formato json
 
 // CRUD
 app.use('/api', activities);
+app.use('/api', subtask);
 app.use('/api', user);
 app.use('/api', group);
 
