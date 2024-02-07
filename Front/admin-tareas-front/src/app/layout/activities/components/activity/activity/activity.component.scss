@@ -6,6 +6,10 @@
     border-radius: 10px;
     text-align: center;
 
+    .actions {
+        position: relative;
+    }
+
     @include m.pc {
         min-width: 40rem;
         max-width: 60rem;
@@ -17,6 +21,13 @@
         gap: 1rem;
         width: 90%;
         margin: 1rem auto;
+
+        .task-title {
+            @include m.pc {
+                width: 30rem;
+                margin: auto !important;
+            }
+        }
 
         p {
             font-weight: bold;
@@ -65,6 +76,29 @@
         padding: 3px 1.5rem;
         font-weight: bold;
         color: rgb(91, 91, 91);
+        text-transform: uppercase;
+
+        &.red {
+            background-color: rgb(172, 0, 0);
+            color: white;
+        }
+    
+        &.orange {
+            background-color: rgb(255, 102, 0);
+        }
+    
+        &.yellow {
+            background-color: rgb(221, 221, 0);
+        }
+    
+        &.lime {
+            background-color: rgb(101, 189, 39);
+        }
+    
+        &.green {
+            background-color: green;
+            color: white;
+        }
     }
 
     .lastUpdate {
@@ -93,24 +127,4 @@
             cursor: pointer;
         }
     }
-}
-
-.red {
-    background-color: rgb(172, 0, 0);
-}
-
-.orange {
-    background-color: rgb(255, 102, 0);
-}
-
-.yellow {
-    background-color: rgb(221, 221, 0);
-}
-
-.lime {
-    background-color: rgb(101, 189, 39);
-}
-
-.green {
-    background-color: green;
 }

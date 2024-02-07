@@ -1,8 +1,13 @@
 <div class="tasks-main mt-4">
+
+    <div class="actions">
+        <app-action-buttons></app-action-buttons>
+    </div>
+
     <div class="task-content">
-        <h2 class="fw-bold text-uppercase">{{activity.task}}</h2>
+        <h2 class="task-title fw-bold text-uppercase">{{activity.task}}</h2>
         <p>Autor: <span>{{authUsername}}</span></p>
-        <p>Grupo: <span>{{activity.group}}</span></p>
+        <p class="mb-3">Grupo: <span class="d-block">{{groupName}}</span></p>
 
         <div class="date d-flex justify-content-center gap-4">
             <p>Inicio <span class="d-block">{{activity.dateStart | date: 'dd/MM/yyyy'}}</span></p>

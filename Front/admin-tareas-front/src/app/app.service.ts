@@ -38,6 +38,10 @@ export class AppService {
     return this.http.get<Group>(this.groupsUrl);
   }
 
+  getGroup(id: number): Observable<Group> {
+    return this.http.get<Group>(`${this.groupsUrl}/${id}`);
+  }
+
   getParticipantsGroup(id: number): Observable<any> {
     return this.http.get<any>(`${this.groupsUrl}/${id}/${this.participants}`);
   }

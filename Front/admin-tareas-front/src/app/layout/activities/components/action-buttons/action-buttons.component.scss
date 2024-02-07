@@ -1,0 +1,28 @@
+@use '../../../../../styles.scss' as m;
+
+.action-notes,
+.action-altering {
+    position: absolute;
+    display: grid;
+    gap: .3rem;
+    margin: 1rem;
+
+    div {
+        cursor: pointer;
+        padding: .7rem;
+        border-radius: 50%;
+        transition: background-color .2s ease-in;
+
+        &:hover {
+            background-color: darken(m.$color-btn-navigate, 10);
+        }
+    }
+}
+
+.action-notes {
+    left: 0;
+}
+
+.action-altering {
+    right: 0;
+}
