@@ -2,7 +2,7 @@
 
 <div class="subtasks">
     <div class="subtasks-main">
-        @if(task.subtask) {
+        @if(showSubtasks) {
             @for(subtask of subtasks; track subtask.id) {
                 <div class="subtask my-2" [ngClass]="checked(subtask) ? 'checked' : ''">
                     <div class="subtask-content">
@@ -10,8 +10,8 @@
                         
                         <div class="user d-flex justify-content-evenly gap-3">
                             <div class="title">
-                                <p>Autor: <span>{{subtask.auth}}</span></p>
-                                <p>Asignado a: <span>{{subtask.assignedTo}}</span></p>
+                                <p>Autor: <span>{{author?.name}}</span></p>
+                                <p>Asignado a: <span>{{assigned?.name}}</span></p>
                             </div>
     
                             <div class="date">
