@@ -2,10 +2,12 @@ import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } fr
 import { ActivitiesService } from '../../../activities.service';
 import { Activities } from '../../../../../models/IActivity';
 import { CommonModule } from '@angular/common';
-import { User } from '../../../../../models/IUser';
 import { AppService } from '../../../../../app.service';
-import { switchMap } from 'rxjs';
 import { ActionButtonsComponent } from '../../action-buttons/action-buttons.component';
+
+/**
+ * Componente de apoyo para activitiesComponent
+ */
 
 @Component({
   selector: 'app-activity',
@@ -16,16 +18,25 @@ import { ActionButtonsComponent } from '../../action-buttons/action-buttons.comp
 })
 export class ActivityComponent implements OnInit {
 
-  /* función de "...más" */  
+  /** funcionalidad de "...más"
+   * @type {ElementRef} informacion de la etiqueta o elemento seleccionado con #more
+   * @description "@ViewChild" ejecuta un setter, recibe la información de la etiqueta "contentElement" como parametro
+   * (muestra el elemento de ...más cuando hay mucho texto en la descripción de la actividad)
+   */
+
   contentElement?: ElementRef;
-  // obtiene datos de la etiqueta seleccionada con plantilla #more
-  // ejecuta en setter, recibe la info de la etiqueta como parametro
   @ViewChild('more', {static: false}) set content(content: ElementRef) {
     if(content) {
       this.contentElement = content;
       this.activitiesService.checkOverflow(this.contentElement);
     }
   };
+
+  /**
+   * @description variables para mostrar u ocultar el elemento ...mas
+   * @type {boolean} mostrar u ocultar el elemento ...más
+   * @type {string} mostrar entre ...mas o ...menos
+   */
   showMore: boolean = false; // intercambio de clases
   showMoreElement: boolean = false; // mostrar o no el elemento que contiene a "...más"
   showMoreText: string = ''; // mostrar entre "."..más" o "...menos"

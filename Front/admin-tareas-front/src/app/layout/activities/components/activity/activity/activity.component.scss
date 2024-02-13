@@ -75,8 +75,8 @@
         border-radius: 10px;
         padding: 3px 1.5rem;
         font-weight: bold;
-        color: rgb(91, 91, 91);
         text-transform: uppercase;
+        color: black;
 
         &.red {
             background-color: rgb(172, 0, 0);
@@ -93,6 +93,7 @@
     
         &.lime {
             background-color: rgb(101, 189, 39);
+            color: white;
         }
     
         &.green {

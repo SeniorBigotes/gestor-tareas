@@ -1,0 +1,982 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>admin-tareas-front documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">admin-tareas-front documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SubtaskComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/layout/activities/components/subtask/subtask.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-subtask</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./subtask.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./subtask.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#assigned" >assigned</a>
+                            </li>
+                            <li>
+                                <a href="#author" >author</a>
+                            </li>
+                            <li>
+                                <a href="#showSubtasks" >showSubtasks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#subtasks" >subtasks</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checked" >checked</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#priority" >priority</a>
+                            </li>
+                            <li>
+                                <a href="#taskComplete" >taskComplete</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#id" >id</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(appService: <a href="../injectables/AppService.html" target="_self">AppService</a>, activitiesService: <a href="../injectables/ActivitiesService.html" target="_self">ActivitiesService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:22</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>appService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activitiesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ActivitiesService.html" target="_self" >ActivitiesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <b>id</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | undefined</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checked"></a>
+                    <span class="name">
+                        <span ><b>checked</b></span>
+                        <a href="#checked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checked(subtask: Subtask)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subtask</td>
+                                            <td>
+                                                        <code>Subtask</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="priority"></a>
+                    <span class="name">
+                        <span ><b>priority</b></span>
+                        <a href="#priority"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>priority(subtask: Subtask)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subtask</td>
+                                            <td>
+                                                        <code>Subtask</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taskComplete"></a>
+                    <span class="name">
+                        <span ><b>taskComplete</b></span>
+                        <a href="#taskComplete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>taskComplete(subtask: Subtask)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subtask</td>
+                                            <td>
+                                                        <code>Subtask</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assigned"></a>
+                    <span class="name">
+                        <span ><b>assigned</b></span>
+                        <a href="#assigned"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>User</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="author"></a>
+                    <span class="name">
+                        <span ><b>author</b></span>
+                        <a href="#author"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>User</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSubtasks"></a>
+                    <span class="name">
+                        <span ><b>showSubtasks</b></span>
+                        <a href="#showSubtasks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subtasks"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>subtasks</b></span>
+                        <a href="#subtasks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subtask[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/layout/activities/components/subtask/subtask.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { Activities } from &#x27;../../../../models/IActivity&#x27;;
+import { Subtask } from &#x27;../../../../models/ISubtask&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { AppService } from &#x27;../../../../app.service&#x27;;
+import { ActivitiesService } from &#x27;../../activities.service&#x27;;
+import { User } from &#x27;../../../../models/IUser&#x27;;
+
+@Component({
+  selector: &#x27;app-subtask&#x27;,
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: &#x27;./subtask.component.html&#x27;,
+  styleUrl: &#x27;./subtask.component.scss&#x27;
+})
+export class SubtaskComponent implements OnInit {
+  
+  @Input() id!: number | undefined; // id de la actividad (activity)
+  subtasks?: Subtask[]; // subtareas
+  showSubtasks: boolean &#x3D; false; // (html) hay subtareas?
+  author!: User; // quien creo la actividad
+  assigned!: User; // quien la va a realizar
+
+  constructor(private appService: AppService,
+              private activitiesService: ActivitiesService) {}
+  
+  ngOnInit(): void {
+    // obtener actividades
+    this.activitiesService.$getActivity.subscribe(activity &#x3D;&gt; {
+      // obtener subtareas
+      if(activity) {
+        this.appService.getSubtasks(activity.id).subscribe(subtasks &#x3D;&gt; {
+          this.subtasks &#x3D; subtasks;
+          if(subtasks.length !&#x3D;&#x3D; 0) {
+            this.showSubtasks &#x3D; true;
+            for(let subtask of subtasks) {
+              this.appService.getUser(subtask.auth).subscribe(auth &#x3D;&gt; this.author &#x3D; auth);
+              this.appService.getUser(subtask.assignedTo).subscribe(assigned &#x3D;&gt; this.assigned &#x3D; assigned);
+            }
+          }
+        })
+      }
+    });
+  } // End ngOnInit()
+
+  priority(subtask: Subtask): string {
+    const priority &#x3D; subtask.priority;
+    switch(priority) {
+      case &#x27;Alta&#x27;: return &#x27;red&#x27;;
+      case &#x27;Media&#x27;: return &#x27;yellow&#x27;;
+      case &#x27;Baja&#x27;: return &#x27;blue&#x27;;
+      default: return &#x27;white&#x27;;
+    }
+  }
+
+  checked(subtask: Subtask): boolean {
+    if(subtask) return subtask.complete ? true : false;
+    return false;
+  }
+
+  taskComplete(subtask: Subtask) {
+    // cambio de status al dar click al checkbox
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;line mt-3&quot;&gt;&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;subtasks&quot;&gt;
+    &lt;div class&#x3D;&quot;subtasks-main&quot;&gt;
+        @if(showSubtasks) {
+            @for(subtask of subtasks; track subtask.id) {
+                &lt;div class&#x3D;&quot;subtask my-2&quot; [ngClass]&#x3D;&quot;checked(subtask) ? &#x27;checked&#x27; : &#x27;&#x27;&quot;&gt;
+                    &lt;div class&#x3D;&quot;subtask-content&quot;&gt;
+                        &lt;p class&#x3D;&quot;title-subtask text-center fw-bold text-uppercase mb-2&quot;&gt;{{subtask.task}}&lt;/p&gt;
+                        
+                        &lt;div class&#x3D;&quot;user d-flex justify-content-evenly gap-3&quot;&gt;
+                            &lt;div class&#x3D;&quot;title&quot;&gt;
+                                &lt;p&gt;Autor: &lt;span&gt;{{author?.name}}&lt;/span&gt;&lt;/p&gt;
+                                &lt;p&gt;Asignado a: &lt;span&gt;{{assigned?.name}}&lt;/span&gt;&lt;/p&gt;
+                            &lt;/div&gt;
+    
+                            &lt;div class&#x3D;&quot;date&quot;&gt;
+                                &lt;p&gt;Inicio: &lt;span&gt;{{subtask.dateStart | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;&lt;/p&gt;
+                                &lt;p&gt;Entrega: &lt;span&gt;{{subtask.dateEnd | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+    
+                        &lt;div class&#x3D;&quot;priority text-center mt-4&quot;&gt;
+                            &lt;!-- &lt;p class&#x3D;&quot;d-inline&quot; [ngClass]&#x3D;&quot;&#x27;white&#x27;&quot;&gt;--&lt;/p&gt; --&gt;
+                            &lt;p class&#x3D;&quot;d-inline&quot; [ngClass]&#x3D;&quot;priority(subtask)&quot;&gt;{{subtask.priority}}&lt;/p&gt;
+                            &lt;p class&#x3D;&quot;complete mt-4&quot;&gt;
+                                @if(subtask.complete) { Completado } @else { En proceso }
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+    
+                        &lt;div class&#x3D;&quot;footer d-flex justify-content-between align-items-center mb-3&quot;&gt;
+                            &lt;div class&#x3D;&quot;btns d-flex gap-2&quot;&gt;
+                                &lt;div&gt;
+                                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;icon icon-tabler icon-tabler-edit&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;
+                                        viewBox&#x3D;&quot;0 0 24 24&quot; stroke-width&#x3D;&quot;1.5&quot; stroke&#x3D;&quot;#000000&quot; fill&#x3D;&quot;none&quot; stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot;&gt;
+                                        &lt;path stroke&#x3D;&quot;none&quot; d&#x3D;&quot;M0 0h24v24H0z&quot; fill&#x3D;&quot;none&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M16 5l3 3&quot; /&gt;
+                                    &lt;/svg&gt;
+                                &lt;/div&gt;
+                                &lt;div&gt;
+                                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;icon icon-tabler icon-tabler-trash&quot; width&#x3D;&quot;20&quot; height&#x3D;&quot;20&quot;
+                                        viewBox&#x3D;&quot;0 0 24 24&quot; stroke-width&#x3D;&quot;1.5&quot; stroke&#x3D;&quot;#000000&quot; fill&#x3D;&quot;none&quot; stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot;&gt;
+                                        &lt;path stroke&#x3D;&quot;none&quot; d&#x3D;&quot;M0 0h24v24H0z&quot; fill&#x3D;&quot;none&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M4 7l16 0&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M10 11l0 6&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M14 11l0 6&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12&quot; /&gt;
+                                        &lt;path d&#x3D;&quot;M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3&quot; /&gt;
+                                    &lt;/svg&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+    
+                            &lt;div class&#x3D;&quot;check&quot;&gt;
+                                &lt;input [ngClass]&#x3D;&quot;checked(subtask) ? &#x27;checked&#x27; : &#x27;&#x27;&quot; [checked]&#x3D;&quot;checked(subtask)&quot; 
+                                type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;complete&quot; id&#x3D;&quot;complete&quot; (click)&#x3D;&quot;taskComplete(subtask);&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            }
+        }
+
+        &lt;div class&#x3D;&quot;add-subtask text-center my-2 py-2&quot;&gt;
+            &lt;p class&#x3D;&quot;add-text&quot;&gt;Agregar&lt;/p&gt;
+            &lt;div class&#x3D;&quot;btn-add&quot;&gt;
+                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;icon icon-tabler icon-tabler-plus&quot; width&#x3D;&quot;36&quot; height&#x3D;&quot;36&quot;
+                    viewBox&#x3D;&quot;0 0 24 24&quot; stroke-width&#x3D;&quot;2.5&quot; stroke&#x3D;&quot;#ffffff&quot; fill&#x3D;&quot;none&quot; stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot;&gt;
+                    &lt;path stroke&#x3D;&quot;none&quot; d&#x3D;&quot;M0 0h24v24H0z&quot; fill&#x3D;&quot;none&quot; /&gt;
+                    &lt;path d&#x3D;&quot;M12 5l0 14&quot; /&gt;
+                    &lt;path d&#x3D;&quot;M5 12l14 0&quot; /&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt; &lt;!-- End .subtasks-main --&gt;
+
+&lt;/div&gt; &lt;!-- End .subtasks --&gt;
+
+&lt;div class&#x3D;&quot;line&quot;&gt;&lt;/div&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="line mt-3"></div><div class="subtasks">    <div class="subtasks-main">        @if(showSubtasks) {            @for(subtask of subtasks; track subtask.id) {                <div class="subtask my-2" [ngClass]="checked(subtask) ? \'checked\' : \'\'">                    <div class="subtask-content">                        <p class="title-subtask text-center fw-bold text-uppercase mb-2">{{subtask.task}}</p>                                                <div class="user d-flex justify-content-evenly gap-3">                            <div class="title">                                <p>Autor: <span>{{author?.name}}</span></p>                                <p>Asignado a: <span>{{assigned?.name}}</span></p>                            </div>                                <div class="date">                                <p>Inicio: <span>{{subtask.dateStart | date: \'dd/MM/yyyy\'}}</span></p>                                <p>Entrega: <span>{{subtask.dateEnd | date: \'dd/MM/yyyy\'}}</span></p>                            </div>                        </div>                            <div class="priority text-center mt-4">                            <!-- <p class="d-inline" [ngClass]="\'white\'">--</p> -->                            <p class="d-inline" [ngClass]="priority(subtask)">{{subtask.priority}}</p>                            <p class="complete mt-4">                                @if(subtask.complete) { Completado } @else { En proceso }                            </p>                        </div>                            <div class="footer d-flex justify-content-between align-items-center mb-3">                            <div class="btns d-flex gap-2">                                <div>                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="20" height="20"                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />                                        <path d="M16 5l3 3" />                                    </svg>                                </div>                                <div>                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20"                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />                                        <path d="M4 7l16 0" />                                        <path d="M10 11l0 6" />                                        <path d="M14 11l0 6" />                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />                                    </svg>                                </div>                            </div>                                <div class="check">                                <input [ngClass]="checked(subtask) ? \'checked\' : \'\'" [checked]="checked(subtask)"                                 type="checkbox" name="complete" id="complete" (click)="taskComplete(subtask);">                            </div>                        </div>                    </div>                </div>            }        }        <div class="add-subtask text-center my-2 py-2">            <p class="add-text">Agregar</p>            <div class="btn-add">                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="36" height="36"                    viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />                    <path d="M12 5l0 14" />                    <path d="M5 12l14 0" />                </svg>            </div>        </div>    </div> <!-- End .subtasks-main --></div> <!-- End .subtasks --><div class="line"></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsComponent', 'selector': 'app-action-buttons'},{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivityComponent', 'selector': 'app-activity'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BusquedaComponent', 'selector': 'app-busqueda'},{'name': 'CarouselActivitiesComponent', 'selector': 'app-carousel-activities'},{'name': 'CarouselComponent', 'selector': 'app-carousel'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'NotifyComponent', 'selector': 'app-notify'},{'name': 'SubtaskComponent', 'selector': 'app-subtask'},{'name': 'UserLogoComponent', 'selector': 'app-user-logo'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SubtaskComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SubtaskComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

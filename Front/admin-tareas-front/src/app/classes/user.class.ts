@@ -7,18 +7,30 @@ import { Injectable } from "@angular/core";
   providedIn: 'root'
 })
 
+/**
+ * Clase de apoyo para transformar los datos para el carrusel
+ */
+
 export class UserClass implements ProcessDataCarousel {
 
     private items: DataCarousel[] = [];
 
-    // Buscar todos los usuarios
+     /**
+     * metodo para procesar los datos de los usuarios
+     * @param user$ arreglo de usuarios (http)
+     * @returns {Observable<DataCarousel[]>} convertir la estructura en observable
+     */
     findAllItems(user$: Observable<User[]>): Observable<DataCarousel[]> {
         return user$.pipe(
             map(users => this.selectItems(users))
         );
     }
 
-    // Datos para el carrusel
+     /**
+     * metodo de apoyo de findAllItems() que envia los datos necesarios
+     * @param activities arreglo de usuarios
+     * @returns {DataCarousel[]} estructura de datos que maneja el carruel
+     */
     private selectItems(users: User[]): DataCarousel[] {
         this.items = users.map(user => ({
             id: user.id,

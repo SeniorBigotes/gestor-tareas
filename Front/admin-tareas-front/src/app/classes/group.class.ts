@@ -7,18 +7,30 @@ import { Injectable } from "@angular/core";
   providedIn: 'root'
 })
 
+/**
+ * Clase de apoyo para transformar los datos para el carrusel
+ */
+
 export class GroupClass implements ProcessDataCarousel {
 
     private items: DataCarousel[] = [];
 
-    // Buscar todos los grupos
+     /**
+     * metodo para procesar los datos de las actividades
+     * @param group$ arreglo de grupos (http)
+     * @returns {Observable<DataCarousel[]>} convertir la estructura en observable
+     */
     findAllItems(group$: Observable<Group[]>): Observable<DataCarousel[]> {
         return group$.pipe(
             map(groups => this.selectItems(groups))
         );
     }
 
-    // Datos para el carrusel
+     /**
+     * metodo de apoyo de findAllItems() que envia los datos necesarios
+     * @param groups arreglo de grupos
+     * @returns {DataCarousel[]} estructura de datos que maneja el carruel
+     */
     private selectItems(groups: Group[]): DataCarousel[] {
         this.items = groups.map(group => ({
             id: group.id,
@@ -30,7 +42,11 @@ export class GroupClass implements ProcessDataCarousel {
         return this.items;
     }
     
-    // Grupo publico o privado
+    /**
+     * metodo de apoyo para selectItems()
+     * @param privacy privacidad del grupo
+     * @returns {string} valor que se enviara al carrusel
+     */
     private isPrivate(privacy: boolean): string {
         return privacy ? 'privado' : 'público';
     }

@@ -6,6 +6,10 @@ import { AppService } from '../../../../app.service';
 import { ActivitiesService } from '../../activities.service';
 import { User } from '../../../../models/IUser';
 
+/**
+ * Componente de apoyo para activities
+ */
+
 @Component({
   selector: 'app-subtask',
   standalone: true,
@@ -18,8 +22,8 @@ export class SubtaskComponent implements OnInit {
   @Input() id!: number | undefined; // id de la actividad (activity)
   subtasks?: Subtask[]; // subtareas
   showSubtasks: boolean = false; // (html) hay subtareas?
-  author!: User; // quien creo la actividad
-  assigned!: User; // quien la va a realizar
+  author: string = '- -'; // quien creo la actividad
+  assigned: string = '- -'; // quien la va a realizar
 
   constructor(private appService: AppService,
               private activitiesService: ActivitiesService) {}
@@ -31,11 +35,12 @@ export class SubtaskComponent implements OnInit {
       if(activity) {
         this.appService.getSubtasks(activity.id).subscribe(subtasks => {
           this.subtasks = subtasks;
-          if(subtasks.length !== 0) {
+          if(subtasks.length > 0) {
             this.showSubtasks = true;
             for(let subtask of subtasks) {
-              this.appService.getUser(subtask.auth).subscribe(auth => this.author = auth);
-              this.appService.getUser(subtask.assignedTo).subscribe(assigned => this.assigned = assigned);
+              // obtener usuarios (autor y asignado)
+              this.appService.getUser(subtask.auth).subscribe(auth => this.author = auth.name);
+              this.appService.getUser(subtask.assignedTo).subscribe(assigned => this.assigned = assigned.name);
             }
           }
         })
