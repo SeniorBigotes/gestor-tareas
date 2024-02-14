@@ -7,7 +7,7 @@ import { ActivitiesService } from '../../activities.service';
 import { User } from '../../../../models/IUser';
 
 /**
- * Componente de apoyo para activities
+ * Componente para obtener las subtareas
  */
 
 @Component({
@@ -18,9 +18,14 @@ import { User } from '../../../../models/IUser';
   styleUrl: './subtask.component.scss'
 })
 export class SubtaskComponent implements OnInit {
+
+  /**
+   * @type {Subtask} subtareas de la actividad principal
+   * @type {boolean} mostrar subtareas
+   * @type {string} autores y asignados
+  */
   
-  @Input() id!: number | undefined; // id de la actividad (activity)
-  subtasks?: Subtask[]; // subtareas
+  subtasks: Subtask[] = []; // subtareas
   showSubtasks: boolean = false; // (html) hay subtareas?
   author: string = '- -'; // quien creo la actividad
   assigned: string = '- -'; // quien la va a realizar
@@ -28,24 +33,26 @@ export class SubtaskComponent implements OnInit {
   constructor(private appService: AppService,
               private activitiesService: ActivitiesService) {}
   
+    /**
+     * Obtener subtareas autores y asignados
+     */
+
   ngOnInit(): void {
-    // obtener actividades
     this.activitiesService.$getActivity.subscribe(activity => {
-      // obtener subtareas
-      if(activity) {
-        this.appService.getSubtasks(activity.id).subscribe(subtasks => {
-          this.subtasks = subtasks;
-          if(subtasks.length > 0) {
-            this.showSubtasks = true;
-            for(let subtask of subtasks) {
-              // obtener usuarios (autor y asignado)
-              this.appService.getUser(subtask.auth).subscribe(auth => this.author = auth.name);
-              this.appService.getUser(subtask.assignedTo).subscribe(assigned => this.assigned = assigned.name);
-            }
-          }
+      if(activity) this.appService.getSubtasks(activity.id).subscribe(subtasks => this.activitiesService.setSubtasks(subtasks));
+    });
+
+    this.activitiesService.$getSubtasks.subscribe(subtasks => {
+      if(subtasks) {
+        this.showSubtasks = true;
+        this.subtasks = subtasks;
+        subtasks.forEach(subtask => {
+          if(subtask.assignedTo) this.appService.getUser(subtask.assignedTo).subscribe(assigned => this.assigned = assigned.name);
+          this.appService.getUser(subtask.auth).subscribe(auth => this.author = auth.name);
         })
       }
-    });
+    })
+    
   } // End ngOnInit()
 
   priority(subtask: Subtask): string {

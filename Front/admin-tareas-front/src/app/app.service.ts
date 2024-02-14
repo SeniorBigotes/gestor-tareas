@@ -36,8 +36,8 @@ export class AppService {
     return this.http.get<Subtask>(`${this.subtasksUrl}/${id}`);
   }
 
-  putSubtasks(task: Activities): Observable<any> {
-    return this.http.put<Activities>(this.activitiesUrl, task);
+  putStatusSubtask(id: number, subtask: Subtask): Observable<any> {
+    return this.http.put<Subtask>(`${this.subtasksUrl}/${id}`, subtask);
   }
 
   getGroups(): Observable<any> {

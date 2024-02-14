@@ -36,12 +36,12 @@
         
         @if(activity) {
             <div class="tasks">
-                <app-activity [activity]="activity"></app-activity>
+                <app-activity></app-activity>
                 @if(showLine) { <div class="line"></div> }
-                <app-subtask [id]="activityID"></app-subtask>
+                <app-subtask></app-subtask>
             </div> <!-- End .tasks -->
         } @else {
-            <p class="text-center p-5">Seleccione una tarea</p>
+            <p class="text-center p-5">No se ha seleccionado una actividad</p>
         }
         </div> <!-- End .activities -->
 </div>

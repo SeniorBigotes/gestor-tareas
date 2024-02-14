@@ -21,7 +21,6 @@ import { of, switchMap } from 'rxjs';
 export class ActivitiesComponent implements OnInit {
 
   activity?: Activities | null;
-  activityID?: number;
   showLine: boolean = this.activitiesService.getScreenWidth() < 600;
 
   constructor(private appService: AppService,
@@ -38,7 +37,6 @@ export class ActivitiesComponent implements OnInit {
   private setActivity(activity: Activities | null): void {
     if(activity) {
       this.activity = activity;
-      this.activityID = activity.id;
       this.activitiesService.setActivity(activity);
     }
   }

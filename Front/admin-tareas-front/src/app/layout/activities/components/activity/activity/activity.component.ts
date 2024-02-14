@@ -42,7 +42,7 @@ export class ActivityComponent implements OnInit {
   showMoreText: string = ''; // mostrar entre "."..más" o "...menos"
   /* fin de función "...más" */
 
-  @Input() activity!: Activities; // Datos a recibir
+  activity!: Activities; // Datos a recibir
   authUsername!: string; // Nombre del autor de la actividad
   groupName: string = '- -'; // Nombre del grupo que creó la actividad
 
