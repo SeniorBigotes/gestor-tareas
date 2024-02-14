@@ -33,10 +33,9 @@ export class SubtaskComponent implements OnInit {
   constructor(private appService: AppService,
               private activitiesService: ActivitiesService) {}
   
-    /**
-     * Obtener subtareas autores y asignados
-     */
-
+  /**
+   * Obtener subtareas autores y asignados
+   */
   ngOnInit(): void {
     this.activitiesService.$getActivity.subscribe(activity => {
       if(activity) this.appService.getSubtasks(activity.id).subscribe(subtasks => this.activitiesService.setSubtasks(subtasks));
@@ -55,6 +54,11 @@ export class SubtaskComponent implements OnInit {
     
   } // End ngOnInit()
 
+  /**
+   * establece el color de la propridad
+   * @param subtask parametro donde se obtiene la subtarea
+   * @returns clase en html para dar color a la prioridad
+   */
   priority(subtask: Subtask): string {
     const priority = subtask.priority;
     switch(priority) {
@@ -65,12 +69,23 @@ export class SubtaskComponent implements OnInit {
     }
   }
 
+  /**
+   * selecciona la casilla del checkbox
+   * @param subtask recibe subtarea
+   * @returns subtarea terminada o no
+   */
   checked(subtask: Subtask): boolean {
     if(subtask) return subtask.complete ? true : false;
     return false;
   }
 
+  /**
+   * cambia el estatus de no completado a completado
+   * @param subtask recibe tarea
+   */
   taskComplete(subtask: Subtask) {
-    // cambio de status al dar click al checkbox
+    const sendComplete = { complete: !subtask.complete ? true : false }
+    this.appService.putStatusSubtask(subtask.id, sendComplete).subscribe();
+    // actualizar el checked() a tiempo real (no queremos recargar para actualizar)
   }
 }

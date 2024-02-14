@@ -6,6 +6,7 @@ import { Group } from './models/IGroup';
 import { User } from './models/IUser';
 import { environment } from '../enviroments/environment';
 import { Subtask } from './models/ISubtask';
+import { SendComplete } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,8 @@ export class AppService {
     return this.http.get<Subtask>(`${this.subtasksUrl}/${id}`);
   }
 
-  putStatusSubtask(id: number, subtask: Subtask): Observable<any> {
-    return this.http.put<Subtask>(`${this.subtasksUrl}/${id}`, subtask);
+  putStatusSubtask(id: number, complete: SendComplete): Observable<any> {
+    return this.http.put<SendComplete>(`${this.subtasksUrl}/${id}`, complete);
   }
 
   getGroups(): Observable<any> {
