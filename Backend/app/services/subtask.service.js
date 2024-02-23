@@ -2,17 +2,16 @@ const { Subtask } = require("../models");
 
 // viewSubtasks
 async function viewSubtasks(activityID) {
-    const subtasks = Subtask.findAll({
-        where: {
-            activityID: activityID
-        }
+    const subtasks = await Subtask.findAll({
+        where: { activityID: activityID },
+        order: [['date_start', 'DESC']]
     });
     return returnData(subtasks);
 }
 
 // 
 async function viewSubtask(id) {
-    const subtasks = Subtask.findByPk(id);
+    const subtasks = await Subtask.findByPk(id);
     return returnData(subtasks);
 }
 

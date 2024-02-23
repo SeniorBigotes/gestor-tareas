@@ -1,8 +1,10 @@
 import { ChangeDetectorRef, ElementRef, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin, switchMap } from 'rxjs';
 import { Activities } from '../../models/IActivity';
 import { User } from '../../models/IUser';
 import { Subtask } from '../../models/ISubtask';
+import { Participats } from '../../models/IParticipants';
+import { AppService } from '../../app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,11 @@ export class ActivitiesService {
   private showMoreElement = new BehaviorSubject<boolean>(false);
   private getActivity = new BehaviorSubject<Activities | null>(null);
   private getSubtasks = new BehaviorSubject<Subtask[] | null>(null);
+  private getParticipants = new BehaviorSubject<User[] | null>(null);
 
 
 
-  constructor() { }
+  constructor(private appService: AppService) { }
   
   /* ACTIVITY COMPONENT */
   get $showMore(): Observable<boolean> {
@@ -32,6 +35,10 @@ export class ActivitiesService {
 
   get $getSubtasks(): Observable<Subtask[] | null> {
     return this.getSubtasks.asObservable();
+  }
+
+  get $getParticipants(): Observable<User[] | null>  {
+    return this.getParticipants.asObservable();
   }
 
   checkOverflow(contentElement?: ElementRef) {    
@@ -55,5 +62,12 @@ export class ActivitiesService {
 
   setSubtasks(subtasks: Subtask[]): void {
     this.getSubtasks.next(subtasks);
+  }
+
+  setParticipants(participants: Participats[]): void {
+    // creamos array de observables
+    const requests = participants.map(p => this.appService.getUser(p.userID));
+    // devuelve un nuevo observable cuando se completa el anterior (requests)
+    forkJoin(requests).subscribe(users => this.getParticipants.next(users));
   }
 }

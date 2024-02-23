@@ -8,7 +8,9 @@ async function viewActivity(id) {{
 
 // viewActivities
 async function viewActivities() {
-    const activities = await Activity.findAll();
+    const activities = await Activity.findAll({
+        order: [ ['date_update', 'DESC'] ]
+    });
     return activities ? activities : null;
 }
 
