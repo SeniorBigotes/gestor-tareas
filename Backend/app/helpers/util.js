@@ -1,9 +1,9 @@
-function sendReport(res, data, status, message) {
-    if(data) {
-        res.status(status).send(data);
-    } else {
-        res.status(404).json({message: message})
-    }
+function sendReport(res, data, status) {
+    res.status(status).send(data);
+}
+
+function sendError(res, status, messageError) {
+    res.status(status).json({message: messageError})
 }
 
 function catchError(res, e) {
@@ -12,5 +12,6 @@ function catchError(res, e) {
 
 module.exports = {
     sendReport,
+    sendError,
     catchError,
 }

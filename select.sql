@@ -1,7 +1,7 @@
-select * from users;
-select * from activities;
-select * from subtasks;
-select * from events;
-select * from groups;
-select * from participants_groups;
-select * from auths_groups;
+select * from users order by id ASC;
+select * from activities order by id ASC;
+select * from subtasks order by id ASC;
+select * from events order by id ASC;
+select * from groups order by id ASC;
+select * from participants_groups order by id ASC;
+select * from auths_groups order by id ASC;

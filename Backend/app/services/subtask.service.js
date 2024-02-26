@@ -1,5 +1,11 @@
 const { Subtask } = require("../models");
 
+// ver subtarea por ID
+async function viewSubtask(id) {
+    const subtasks = await Subtask.findByPk(id);
+    return returnData(subtasks);
+}
+
 // viewSubtasks
 async function viewSubtasks(activityID) {
     const subtasks = await Subtask.findAll({
@@ -9,20 +15,39 @@ async function viewSubtasks(activityID) {
     return returnData(subtasks);
 }
 
-// 
-async function viewSubtask(id) {
-    const subtasks = await Subtask.findByPk(id);
-    return returnData(subtasks);
+// changeStatus
+async function changeStatus(id, body) {
+    const subtask = await viewSubtask(id);
+    if(subtask) {
+        subtask.complete = body.complete;
+        subtask.dateComplete = body.dateComplete;
+        await subtask.save();
+    }
+    return returnData(subtask);
 }
 
-// changeStatus
-async function changeStatus(id, complete) {
-    const subtasks = await viewSubtask(id);
-    if(subtasks) {
-        subtasks.complete = complete;
-        await subtasks.save();
+async function updateSubtask(id, body) {
+    const subtask = await viewSubtask(id);
+    let data = subtask;
+    if(subtask) {
+        let verify = Object.values(body).every(value => value !== null && value !== undefined);
+        
+        if(verify) {
+            const {task, dateStart, dateEnd, assignedTo, priority} = body;
+
+            subtask.task = task;
+            subtask.dateStart = dateStart;
+            subtask.dateEnd = dateEnd;
+            subtask.assignedTo = assignedTo === 0 ? null : assignedTo;
+            subtask.priority = priority;
+
+            await subtask.save();
+        } else {
+            data = false;
+        }
     }
-    return returnData(subtasks);
+
+    return returnData(data);
 }
 
 // funcion de apoyo para retorno
@@ -34,4 +59,5 @@ module.exports = {
     viewSubtasks,
     viewSubtask,
     changeStatus,
+    updateSubtask,
 }

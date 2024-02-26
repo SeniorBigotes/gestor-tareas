@@ -49,6 +49,7 @@
     .subtask-content {
         width: 90%;
         margin: .5rem auto;
+        position: relative;
         
         .priority {
             p {
@@ -59,6 +60,10 @@
 
             .complete {
                 color: black;
+
+                span {
+                    font-size: 1.2rem;
+                }
             }
         }
 
@@ -67,6 +72,9 @@
         }
 
         .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
             .btns {
                 div {
                     padding: .5rem;

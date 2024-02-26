@@ -1,5 +1,4 @@
-const { sendReport, catchError } = require('../helpers/util')
-const { Subtask } = require('../models');
+const { sendReport, catchError, sendError } = require('../helpers/util')
 
 const service = require('../services/subtask.service');
 
@@ -9,7 +8,7 @@ exports.viewSubtasks = async(req, res) => {
         const id = req.params.id;
         const subtasks = await service.viewSubtasks(id);
 
-        sendReport(res, subtasks, 200, 'Subtask not found');
+        subtasks ? sendReport(res, subtasks, 200) : sendError(res, 404, 'Subtasks not found');
 
     } catch(e) {
         catchError(res, e);
@@ -19,11 +18,29 @@ exports.viewSubtasks = async(req, res) => {
 exports.changeStatus = async (req, res) => {
     try {
         const id = req.params.id;
-        const complete = req.body.complete;
-        const subtasks = await service.changeStatus(id, complete);
+        const body = req.body;
+        const subtasks = await service.changeStatus(id, body);
 
-        sendReport(res, subtasks, 200, 'Subtask not found');
+        subtasks? sendReport(res, subtasks, 200) : sendError(res, 404, 'Subtask not found');
 
+    } catch(e) {
+        catchError(res, e);
+    }
+}
+
+exports.updateSubtask = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const body = req.body;
+        const subtask = await service.updateSubtask(id, body);
+
+        if(subtask === null) {
+            sendError(res, 404, 'Subtask not found');
+        } else if(subtask === false) {
+            sendError(res, 400, 'Values must not be null or undefined')
+        } else {
+            sendReport(res, subtask, 200);
+        }
     } catch(e) {
         catchError(res, e);
     }

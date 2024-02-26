@@ -6,7 +6,7 @@ import { Group } from './models/IGroup';
 import { User } from './models/IUser';
 import { environment } from '../enviroments/environment';
 import { Subtask } from './models/ISubtask';
-import { SendComplete } from './types';
+import { SendComplete, UpdateSubtask } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -25,20 +25,24 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  getTasks(): Observable<any> {
-    return this.http.get<Activities>(this.activitiesUrl);
+  getTasks(): Observable<Activities[]> {
+    return this.http.get<Activities[]>(this.activitiesUrl);
   }
 
   getActivity(id: number): Observable<Activities> {
     return this.http.get<Activities>(`${this.activitiesUrl}/${id}`);
   }
 
-  getSubtasks(id: number): Observable<any> {
-    return this.http.get<Subtask>(`${this.subtasksUrl}/${id}`);
+  getSubtasks(id: number): Observable<Subtask[]> {
+    return this.http.get<Subtask[]>(`${this.subtasksUrl}/${id}`);
   }
 
-  putStatusSubtask(id: number, complete: SendComplete): Observable<any> {
-    return this.http.put<SendComplete>(`${this.subtasksUrl}/${id}`, complete);
+  putStatusSubtask(id: number, complete: SendComplete): Observable<SendComplete> {
+    return this.http.put<SendComplete>(`${this.subtasksUrl}/${id}/status`, complete);
+  }
+
+  putSubtask(id: number, body: UpdateSubtask): Observable<UpdateSubtask> {
+    return this.http.put<UpdateSubtask>(`${this.subtasksUrl}/${id}`, body);
   }
 
   getGroups(): Observable<any> {
