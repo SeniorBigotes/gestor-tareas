@@ -10,8 +10,15 @@ function catchError(res, e) {
     res.status(500).json({message: `Answer error: ${e.message}`});
 }
 
+/* SERVICE */
+// funcion de apoyo para retorno
+function returnData(data) {
+    return data ? data : null;
+}
+
 module.exports = {
     sendReport,
     sendError,
     catchError,
+    returnData,
 }
