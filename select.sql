@@ -5,3 +5,4 @@ select * from events order by id ASC;
 select * from groups order by id ASC;
 select * from participants_groups order by id ASC;
 select * from auths_groups order by id ASC;
+select * from notes order by id ASC;

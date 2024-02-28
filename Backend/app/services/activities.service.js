@@ -1,9 +1,10 @@
+const { returnData } = require('../helpers/util');
 const { Activity } = require("../models");
 
 // viewActivity
 async function viewActivity(id) {{
     const activity = await Activity.findByPk(id);
-    return activity ? activity : null;
+    return returnData(activity);
 }}
 
 // viewActivities
@@ -11,7 +12,7 @@ async function viewActivities() {
     const activities = await Activity.findAll({
         order: [ ['date_update', 'DESC'] ]
     });
-    return activities ? activities : null;
+    return returnData(activities);
 }
 
 // createActivity
@@ -20,7 +21,8 @@ async function createActivity(body) {
     const newActivity = { task, description, dateStart, dateEnd, dateUpdate, progress, complete, auth, groupID }
     
     const activity = await Activity.create(newActivity);
-    return activity ? activity : null;
+
+    return returnData(activity);
 }
 
 // updateActivity
@@ -28,6 +30,7 @@ async function updateActivity(id, body) {
     const activity = await viewActivity(id);
     if(!activity) return null;
     await activity.update(body);
+    
     return activity;
 }
 

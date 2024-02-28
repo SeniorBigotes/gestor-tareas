@@ -6,7 +6,8 @@ import { Group } from './models/IGroup';
 import { User } from './models/IUser';
 import { environment } from '../enviroments/environment';
 import { Subtask } from './models/ISubtask';
-import { SendComplete, UpdateSubtask } from './types';
+import { CreateSubtask, SendComplete, UpdateSubtask } from './types';
+import { Note } from './models/INote';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AppService {
   private usersUrl = environment.API_USERS;
   private groupsUrl = environment.API_GROUPS;
   private participants = environment.API_PARTICIPANTS_GROUPS;
+  private notesUrl = environment.API_NOTES;
 
   // Navegacion (Menu - nav) navigate();
   private showNavigate = new BehaviorSubject<boolean>(false);
@@ -33,8 +35,12 @@ export class AppService {
     return this.http.get<Activities>(`${this.activitiesUrl}/${id}`);
   }
 
-  getSubtasks(id: number): Observable<Subtask[]> {
-    return this.http.get<Subtask[]>(`${this.subtasksUrl}/${id}`);
+  getSubtasks(idActivity: number): Observable<Subtask[]> {
+    return this.http.get<Subtask[]>(`${this.subtasksUrl}/${idActivity}`);
+  }
+
+  createSubtask(body: CreateSubtask): Observable<Subtask> {
+    return this.http.post<Subtask>(`${this.subtasksUrl}`, body);
   }
 
   putStatusSubtask(id: number, complete: SendComplete): Observable<SendComplete> {
@@ -63,6 +69,10 @@ export class AppService {
 
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.usersUrl}/${id}`);
+  }
+
+  getNotes(): Observable<Note[]> {
+    return this.http.get<Note[]>(`${this.notesUrl}`)
   }
 
   // Navegacion (Menu - nav)

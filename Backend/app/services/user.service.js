@@ -1,13 +1,14 @@
+const { returnData } = require('../helpers/util');
 const { UserData } = require("../models");
 
 async function viewUser(id) {
     const user = await UserData.findByPk(id);
-    return user ? user : null;
+    return returnData(user);
 }
 
 async function viewUsers() {
     const users = await UserData.findAll();
-    return users ? users : null;
+    return returnData(users);
 }
 
 module.exports = {

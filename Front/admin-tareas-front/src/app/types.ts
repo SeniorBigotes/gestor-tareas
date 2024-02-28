@@ -10,3 +10,13 @@ export interface UpdateSubtask {
     dateStart: Date;
     dateEnd: Date;
 }
+
+export interface CreateSubtask {
+    task: string;
+    priority: string;
+    dateStart: Date;
+    dateEnd: Date;
+    auth: number;
+    assignedTo: number;
+    activityID: number;
+}

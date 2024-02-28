@@ -1,3 +1,4 @@
+const { returnData } = require('../helpers/util');
 const { Subtask } = require("../models");
 
 // ver subtarea por ID
@@ -26,6 +27,7 @@ async function changeStatus(id, body) {
     return returnData(subtask);
 }
 
+// updateSubtask
 async function updateSubtask(id, body) {
     const subtask = await viewSubtask(id);
     let data = subtask;
@@ -50,9 +52,27 @@ async function updateSubtask(id, body) {
     return returnData(data);
 }
 
-// funcion de apoyo para retorno
-function returnData(data) {
-    return data ? data : null;
+// createSubtask
+async function createSubtask(body) {
+    let data = null;
+    let verify = Object.values(body).every(value => value !== null && value !== undefined);
+
+    if(verify) {
+        const { task, priority, dateStart, dateEnd, activityID, auth, assignedTo } = body
+        const newSubtask = await Subtask.create({
+            task: task,
+            priority: priority,
+            dateStart: dateStart,
+            dateEnd: dateEnd,
+            activityID: activityID,
+            auth: auth,
+            assignedTo: assignedTo === 0 ? null : assignedTo,
+            complete: false
+        });
+        data = newSubtask;
+    }
+
+    return returnData(data);
 }
 
 module.exports = {
@@ -60,4 +80,5 @@ module.exports = {
     viewSubtask,
     changeStatus,
     updateSubtask,
+    createSubtask,
 }

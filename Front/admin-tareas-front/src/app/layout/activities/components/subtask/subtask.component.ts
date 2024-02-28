@@ -7,6 +7,7 @@ import { User } from '../../../../models/IUser';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Priority } from '../../../../models/IPriority';
 import { BehaviorSubject, Observable, catchError, map, of, switchMap, take } from 'rxjs';
+import { NotesComponent } from '../notes/notes.component';
 
 /**
  * Componente para obtener las subtareas
@@ -15,12 +16,13 @@ import { BehaviorSubject, Observable, catchError, map, of, switchMap, take } fro
 @Component({
   selector: 'app-subtask',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NotesComponent],
   templateUrl: './subtask.component.html',
   styleUrl: './subtask.component.scss'
 })
 export class SubtaskComponent implements OnInit {
  
+  activityID : number = 0; 
   subtasks: Subtask[] = []; // subtareas
   subtask?: Subtask; //
   showSubtasks: boolean = false; // (html) hay subtareas?
@@ -41,14 +43,17 @@ export class SubtaskComponent implements OnInit {
    */
   ngOnInit(): void {
     this.activitiesService.$getActivity.subscribe(activity => {
-      if(activity) this.appService.getSubtasks(activity.id).subscribe(subtasks => {
-        if(activity.groupID) {
-          this.appService.getParticipantsGroup(activity.groupID)
-            .subscribe(participants => this.activitiesService.setParticipants(participants));
-        }
-        this.activitiesService.setSubtasks(subtasks);
-        this.btnAddSubtask = !activity.complete ? true : false;  
-      });
+      if(activity) {
+        this.activityID = activity.id;
+        this.appService.getSubtasks(activity.id).subscribe(subtasks => {
+          if(activity.groupID) {
+            this.appService.getParticipantsGroup(activity.groupID)
+              .subscribe(participants => this.activitiesService.setParticipants(participants));
+          }
+          this.activitiesService.setSubtasks(subtasks);
+          this.btnAddSubtask = !activity.complete ? true : false;  
+        });
+      }
     });
     this.activitiesService.$getSubtasks.subscribe(subtasks => {
       if(subtasks) {
@@ -187,9 +192,37 @@ export class SubtaskComponent implements OnInit {
     });
   }
 
+  createSubtask(): void {
+    const assigned = this.getAssigned.value ? this.getAssigned.value : 0;
+    const newSubtask = {
+      task: this.getTitle.value,
+      priority: this.getPriority.value,
+      dateStart: this.getDateStart.value,
+      dateEnd: this.getDateEnd.value,
+      auth: 1,
+      assignedTo: assigned,
+      activityID: this.activityID
+    }
+
+    console.log(newSubtask);
+
+    /*
+    this.appService.createSubtask(newSubtask).subscribe({
+      complete: () => {
+        this.appService.getSubtasks(this.activityID)
+          .subscribe(subtasks => this.activitiesService.setSubtasks(subtasks))
+      }
+    })
+    */
+  }
+
   // cancelar modificaciones
   cancel(): void {
     this.subtaskEditID = null;
+  }
+
+  showNotes(subtaskID: number): void {
+    console.log('mostrando notas')
   }
 
   /** formulario para editar

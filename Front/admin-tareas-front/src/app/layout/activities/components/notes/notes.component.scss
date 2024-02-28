@@ -1,0 +1,76 @@
+@use '../../../../../styles.scss' as m;
+
+p {
+    margin: 0;
+}
+
+.notes {
+    background-color: m.$color-white;
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1rem;
+    max-width: 60%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.notes-btn {
+    position: sticky;
+    top: 0;
+    width: 5%;
+    border: 1px solid m.$color-navigate-hover;
+    border-top-right-radius: 1rem;
+    background-color: m.$color-white;
+    transition: background-color .2s ease-in;
+    cursor: pointer;
+
+    &:hover {
+        background-color: m.$color-btn-navigate;
+    }
+}
+
+.notes-content {
+    .notes-text {
+        transition: background-color .2s ease-in;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: darken(m.$color-btn-navigate, 5);
+        }
+        
+        p {
+            margin: auto !important;
+            width: 90%;
+            font-size: 1.3rem;
+            span {
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+.line {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: m.$color-line;
+    border-radius: 10px;
+}
+
+textarea {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    height: auto;
+    min-height: 5;
+    font-size: 1.1rem;
+    width: 100%;
+
+    &::placeholder {
+        font-style: italic;
+    }
+}

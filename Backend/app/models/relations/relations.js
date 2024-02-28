@@ -2,6 +2,7 @@ const Activity = require('../activity.model');
 const AuthGroup = require('../authGroup.model');
 const Event = require('../event.model');
 const Group = require('../group.model');
+const Note = require('../note.model');
 const ParticipantGroup = require('../participantsGroup.model');
 const Subtask = require('../subtask.model');
 const UserData = require('../userData.model');
@@ -18,6 +19,8 @@ function relations() {
     relation.OneToMany(Group, ParticipantGroup, 'groupID');
     relation.OneToMany(UserData, AuthGroup, 'userID');
     relation.OneToMany(Group, AuthGroup, 'groupID');
+    relation.OneToMany(Activity, Note, 'activityID');
+    relation.OneToMany(Subtask, Note, 'subtaskID');
 }
 
 module.exports = relations;

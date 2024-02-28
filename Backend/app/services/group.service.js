@@ -1,3 +1,4 @@
+const { returnData } = require('../helpers/util');
 const { Group, ParticipantGroup } = require("../models");
 
 // viewGroup
@@ -18,11 +19,6 @@ async function viewParticipants(id) {
         where: {groupID: id},
 });
     return returnData(participants);
-}
-
-// funcion de apoyo para retorno
-function returnData(data) {
-    return data ? data : null;
 }
 
 module.exports = {

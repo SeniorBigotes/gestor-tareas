@@ -45,3 +45,15 @@ exports.updateSubtask = async (req, res) => {
         catchError(res, e);
     }
 }
+
+exports.createSubtask = async (req, res) => {
+    try {
+        const body = req.body;
+        const newSubtask = await service.createSubtask(body);
+
+        newSubtask ? sendReport(res, newSubtask, 201)
+        : sendError(res, 400, 'Error when creating, there must be no null values')
+    } catch(e) {
+        catchError(res, e);
+    }
+}

@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
-const Activity = require('./activity.model');
 
 const Subtask = sequelize.define('subtask', {
     id: {
@@ -36,17 +35,16 @@ const Subtask = sequelize.define('subtask', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
-    // Por asignar
-    activityID: { // activity
+    activityID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         field: 'activity_id',
     },
-    auth: { // user
+    auth: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    assignedTo: { // user
+    assignedTo: {
         type: DataTypes.INTEGER,
         field: 'assigned_to',
     }

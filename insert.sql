@@ -16,20 +16,20 @@ VALUES
   ('Hacer presentación', 'Preparar slides y ensayar', '2023-01-25', '2023-01-28', '2023-01-27', 70, false, 1, null),
   ('Desarrollar nueva función', 'Programar y realizar pruebas', '2023-02-01', '2023-02-10', '2023-02-09', 50, false, 2, null),
   ('Reunión de equipo', 'Planificar y discutir proyectos', '2023-02-15', '2023-02-15', '2023-02-15', 100, true, 3, null),
-  ('Optimizar base de datos', 'Realizar mejoras de rendimiento', '2023-02-22', '2023-02-28', '2023-02-27', 80, false, 1, null),
-  ('Entrenamiento', 'Participar en taller de desarrollo', '2023-03-05', '2023-03-08', '2023-03-07', 90, true, 2, null),
-  ('Revisión de código', 'Evaluar y corregir código fuente', '2023-03-15', '2023-03-20', '2023-03-19', 60, false, 3, null);
+  ('Optimizar base de datos', 'Realizar mejoras de rendimiento', '2023-02-22', '2023-02-28', '2023-02-27', 80, false, 4, null),
+  ('Entrenamiento', 'Participar en taller de desarrollo', '2023-03-05', '2023-03-08', '2023-03-07', 90, true, 5, null),
+  ('Revisión de código', 'Evaluar y corregir código fuente', '2023-03-15', '2023-03-20', '2023-03-19', 60, false, 6, null);
 
 /*subtasks*/
 INSERT INTO subtasks (task, priority, date_start, date_end,
   date_complete, complete, activity_id, auth, assigned_to)
 VALUES
-  ('Revisar contenido', 'Media', '2023-01-25', '2023-01-27', '2023-01-27', true, 1, 1, null),
-  ('Implementar funcionalidad', 'Alta', '2023-02-01', '2023-02-10', null, false, 2, 2, 3),
-  ('Analizar datos', 'Baja', '2023-02-15', '2023-02-20', '2023-02-20', true, 3, 3, 1),
-  ('Optimizar consultas', 'Urgente', '2023-02-22', '2023-02-28', null, false, 1, 1, null),
-  ('Preparar presentación', 'Alta', '2023-03-05', '2023-03-08', '2023-03-08', true, 2, 2, 3),
-  ('Revisar código', 'Media', '2023-03-15', '2023-03-20', null, false, 3, 3, 1);
+  ('Revisar contenido', 'Media', '2023-01-25', '2023-01-27', '2023-01-27', true, 1, 1, 2),
+  ('Implementar funcionalidad', 'Alta', '2023-02-01', '2023-02-10', null, false, 1, 2, 3),
+  ('Analizar datos', 'Baja', '2023-02-15', '2023-02-20', '2023-02-20', true, 2, 4, null),
+  ('Optimizar consultas', 'Urgente', '2023-02-22', '2023-02-28', null, false, 3, 3, null),
+  ('Preparar presentación', 'Alta', '2023-03-05', '2023-03-08', '2023-03-08', true, 3, 3, 5),
+  ('Revisar código', 'Media', '2023-03-15', '2023-03-20', null, false, 3, 4, 6);
 
 /*events*/
 INSERT INTO events (name, description, date, user_id, group_id)
@@ -56,32 +56,16 @@ VALUES
 INSERT INTO participants_groups (user_id, group_id) VALUES
 (1, 1),
 (2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(1, 2),
-(2, 2),
 (3, 2),
 (4, 2),
-(1, 3),
-(2, 3),
-(1, 4),
-(1, 5),
-(2, 5),
-(1, 6),
-(2, 6);
+(5, 2),
+(6, 2),
+(1, 2),
+(2, 2);
 
 /*auths*/
-INSERT INTO participants_groups (user_id, group_id) VALUES
+INSERT INTO auths_groups (user_id, group_id) VALUES
 (1, 1),
 (2, 1),
-(3, 1),
-(1, 2),
-(2, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(2, 5),
-(1, 6),
-(2, 6);
+(3, 2),
+(4, 2);

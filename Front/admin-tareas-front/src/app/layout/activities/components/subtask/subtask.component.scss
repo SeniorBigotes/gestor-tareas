@@ -46,10 +46,28 @@
         }
     }
 
+    .subtask {
+        position: relative;
+    }
+
     .subtask-content {
         width: 90%;
         margin: .5rem auto;
         position: relative;
+
+        .btn-notas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: .5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color .3s ease-in-out;
+        
+            &:hover {
+                background-color: m.$color-navigate-hover;
+            }
+        }
         
         .priority {
             p {
@@ -103,7 +121,7 @@
         }
         .btn-add {
             padding: 1rem;
-            
+
             svg {
                 cursor: pointer;
                 display: inline;
@@ -118,6 +136,7 @@
                     transform: scale(1.05);
                 }
             }
+            
         }
     }
 }

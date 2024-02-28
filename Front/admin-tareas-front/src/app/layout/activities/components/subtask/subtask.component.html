@@ -6,7 +6,22 @@
             @for(subtask of subtasks; track subtask.id) {
                 <div class="subtask m-2" [ngClass]="checked(subtask) ? 'checked' : ''"
                 [formGroup]="formGroup">
+                    <!-- mostrar notas -->
+                    <app-notes></app-notes>
                     <div class="subtask-content">
+                        <!-- notas -->
+                        <div class="btn-notas m-2" (click)="showNotes(subtask.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="20" height="20"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
+                                <path d="M9 7l6 0" />
+                                <path d="M9 11l6 0" />
+                                <path d="M9 15l4 0" />
+                            </svg>
+                        </div>
+
                         <p class="title-subtask text-center fw-bold text-uppercase mb-2">
                             @if(editSubtask(subtask)) {
                                 <input formControlName="title" type="text">
@@ -125,7 +140,7 @@
                                     }
                                 </div>
                             </div>
-    
+
                             <div class="check">
                                 <input [ngClass]="checked(subtask) ? 'checked' : ''" [checked]="checked(subtask)" 
                                 type="checkbox" name="complete" id="complete" (click)="checked(subtask, true);">
@@ -139,8 +154,9 @@
         @if(btnAddSubtask) {
             <div class="add-subtask text-center my-2 py-2">
                 <p class="add-text">Agregar</p>
-                <div class="btn-add">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="36" height="36"
+                <div class="btn-add m-auto">
+                    <svg (click)="createSubtask()"
+                    xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="36" height="36"
                         viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 5l0 14" />
@@ -151,7 +167,6 @@
         }
 
     </div> <!-- End .subtasks-main -->
-
 </div> <!-- End .subtasks -->
 
 <div class="line"></div>
