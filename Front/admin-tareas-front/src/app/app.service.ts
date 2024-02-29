@@ -71,8 +71,8 @@ export class AppService {
     return this.http.get<User>(`${this.usersUrl}/${id}`);
   }
 
-  getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(`${this.notesUrl}`)
+  getNotes(activityID: number, subutaskID: number): Observable<Note[]> {
+    return this.http.get<Note[]>(`${this.notesUrl}/${activityID}/${subutaskID}`);
   }
 
   // Navegacion (Menu - nav)

@@ -36,6 +36,7 @@ p {
     .notes-text {
         transition: background-color .2s ease-in;
         cursor: pointer;
+        position: relative;
         
         &:hover {
             background-color: darken(m.$color-btn-navigate, 5);
@@ -44,11 +45,16 @@ p {
         p {
             margin: auto !important;
             width: 90%;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             span {
                 font-size: 1.1rem;
             }
         }
+    }
+
+    .note-new {
+        overflow: hidden;
+        animation-duration: .3s;
     }
 }
 
@@ -72,5 +78,48 @@ textarea {
 
     &::placeholder {
         font-style: italic;
+    }
+}
+
+.slide-in {
+    animation-name: slideIn;
+}
+
+.slide-out {
+    animation-name: slideOut;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.rotate {
+    transform: rotate(225deg);
+    transition: transform .3s ease;
+}
+
+.no-rotate {
+    transform: (rotate(0));
+    transition: transform .3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 10rem;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        max-height: 10rem;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
     }
 }

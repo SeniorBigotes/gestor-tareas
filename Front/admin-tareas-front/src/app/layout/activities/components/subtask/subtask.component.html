@@ -7,7 +7,8 @@
                 <div class="subtask m-2" [ngClass]="checked(subtask) ? 'checked' : ''"
                 [formGroup]="formGroup">
                     <!-- mostrar notas -->
-                    <app-notes></app-notes>
+                    <app-notes [activityID]="0" [subtaskID]="subtask.id" />
+                    
                     <div class="subtask-content">
                         <!-- notas -->
                         <div class="btn-notas m-2" (click)="showNotes(subtask.id)">

@@ -69,3 +69,16 @@ INSERT INTO auths_groups (user_id, group_id) VALUES
 (2, 1),
 (3, 2),
 (4, 2);
+
+/*notes*/
+INSERT INTO NOTES (note, activity_id, subtask_id, auth_id) VALUES 
+('Investigar sobre el patrón de diseño Singleton en Java', null, 6, 3),
+('Leer el artículo sobre las novedades de ES2020 en JavaScript.', null, 6, 3),
+('Practicar el uso de expresiones regulares en Python.', null, 6, 3),
+('Revisar la documentación de React Hooks para mejorar el rendimiento en componentes funcionales.', null, 5, 3),
+('Experimentar con la API de localStorage en HTML5 para almacenar datos localmente en el navegador', null, 5, 3),
+('Estudiar los principios de diseño SOLID y aplicarlos en el desarrollo de software', null, 4, 3),
+('Investigar sobre las diferencias entre REST y GraphQL para elegir la mejor opción en futuros proyectos de API.', null, 4, 3),
+('Resolver el desafío de programación de HackerRank sobre estructuras de datos', null, 3, 2),
+('Participar en un curso en línea sobre desarrollo de aplicaciones móviles con Flutter', null, 3, 2),
+('Configurar un entorno de desarrollo local con Docker para facilitar la colaboración en equipo.', null, 3, 2);

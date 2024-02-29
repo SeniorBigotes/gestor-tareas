@@ -1,9 +1,10 @@
 <div class="notes">
-    <div class="notes-body">
+    <div class="notes-body" [formGroup]="formGroup">
         <div class="notes-btn w-100 p-1 d-grid justify-content-center"
         (click)="addNote()">
             <div class="notes-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="20" height="20"
+                [ngClass]="showAddNote ? 'rotate' : 'no-rotate'"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M12 5l0 14" />
@@ -14,45 +15,25 @@
 
         <!-- Crear nota -->
         <div class="notes-content">
-            <div class="notes-text pt-1">
+            <div class="notes-text pt-1 note-new" [ngClass]="showAddNote ? 'slide-in' : 'slide-out'">
                 <p class="fw-bold">Autor: <textarea id="textarea" class="fw-normal notes_input" placeholder=" Nota"></textarea></p>
                 <div class="line"></div>
             </div>
         </div>
     
+        <!-- todas las notas -->
         <div class="notes-content">
-            <div class="notes-text pt-1" (click)="updateNote()">
-                @if(!editNote) {
-                    <p class="fw-bold">Mauricio: <span class="fw-normal">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste unde repudiandae aut accusamus voluptatibus ratione.
-                        Aperiam nostrum enim,
-                        sed dicta quas ipsam doloremque recusandae pariatur dolore magni molestias odit itaque?
-                    </span></p>
-                } @else {
-                    <p class="fw-bold">Mauricio <textarea class="fw-normal notes_input" placeholder=" Note"></textarea></p>
-                }
-                <div class="line"></div>
-            </div>
-            <div class="notes-text">
-                <p class="fw-bold">Mauricio: <span class="fw-normal">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste unde repudiandae aut accusamus voluptatibus ratione.
-                    Aperiam nostrum enim,
-                    sed dicta quas ipsam doloremque recusandae pariatur dolore magni molestias odit itaque?
-                </span></p>
-                <div class="line"></div>
-            </div>
-            <div class="notes-text">
-                <p class="fw-bold">Mauricio: <span class="fw-normal">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste unde repudiandae aut accusamus voluptatibus ratione.
-                    Aperiam nostrum enim,
-                    sed dicta quas ipsam doloremque recusandae pariatur dolore magni molestias odit itaque?
-                </span></p>
-                <div class="line"></div>
-            </div>
-        
-            <div class="notes-add">
-                
-            </div>
+            @for(note of notes; track note) {
+                <div class="notes-text note-gral pt-1" (click)="updateNote(note)">
+                    @if(editNoteID === note.id) {
+                        <p class="fw-bold">Mauricio:
+                            <textarea class="fw-normal notes_input" placeholder=" Note" formControlName="notes"></textarea></p>
+                    } @else {
+                        <p class="fw-bold"> {{ auth[note.authID] | async }}: <span class="fw-normal"> {{note.note}} </span></p>
+                    }
+                    <div class="line"></div>
+                </div>
+            }
         </div>
     </div>
 </div>

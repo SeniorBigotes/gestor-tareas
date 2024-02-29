@@ -6,6 +6,7 @@ const activities = require('./routes/activities');
 const subtask = require('./routes/subtask');
 const user = require('./routes/user');
 const group = require('./routes/group');
+const note = require('./routes/note');
 
 const sequelize = require('./config/sequelize');
 
@@ -27,6 +28,7 @@ app.use('/api', activities);
 app.use('/api', subtask);
 app.use('/api', user);
 app.use('/api', group);
+app.use('/api', note);
 
 // Conexion a la base de datos
 authenticate(sequelize);
