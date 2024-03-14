@@ -10,11 +10,37 @@ p {
     border-top-right-radius: 1rem;
     max-width: 60%;
     position: absolute;
+    display: block;
     top: 0;
     right: 0;
     z-index: 1;
     max-height: 100%;
     overflow: auto;
+
+    .slide-in {
+        animation-name: slideIn;
+    }
+
+    .slide-out {
+        animation-name: slideOut;
+        opacity: 0;
+        max-height: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    &.notes-in {
+        opacity: 1;
+        // max-width: 60%;
+        transform: translateX(0%);
+        transition: all 0.3s ease;
+    }
+
+    &.notes-out {
+        opacity: 0;
+        // max-width: 0;
+        transform: translate(100%);
+        transition: all 0.3s ease;
+    }
 }
 
 .notes-btn {
@@ -81,17 +107,6 @@ textarea {
     }
 }
 
-.slide-in {
-    animation-name: slideIn;
-}
-
-.slide-out {
-    animation-name: slideOut;
-    opacity: 0;
-    max-height: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
 .rotate {
     transform: rotate(225deg);
     transition: transform .3s ease;
@@ -102,6 +117,7 @@ textarea {
     transition: transform .3s ease;
 }
 
+// add note
 @keyframes slideIn {
     from {
         max-height: 0;

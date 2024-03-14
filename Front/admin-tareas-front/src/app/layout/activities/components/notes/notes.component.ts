@@ -1,9 +1,10 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Note } from '../../../../models/INote';
 import { AppService } from '../../../../app.service';
-import { Observable, map } from 'rxjs';
+import { Observable, count, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivitiesService } from '../../activities.service';
 
 @Component({
   selector: 'app-notes',
@@ -21,10 +22,12 @@ export class NotesComponent implements OnInit {
   editNoteID: number = 0; // id de la nota a modificar
   showAddNote: boolean = false; // mostrar textarea para agregar
   formGroup: FormGroup = this.formNotes();
+  idSubtask: number | null = null; // comparar y mostrar notas (general)
   
-  isClickHandled: boolean = true; // variable de ayuda para onClick()
+  count: number = 0; // variable de ayuda para onClick()
   
   constructor(private appService: AppService,
+              private activitiesService: ActivitiesService,
               private fb: FormBuilder) {}
   
   ngOnInit(): void {
@@ -32,6 +35,8 @@ export class NotesComponent implements OnInit {
       this.notes = notes;
       notes.forEach(note => this.auth[note.authID] = this.getAuthor(note.authID))
     });
+
+    this.activitiesService.$getshowNotes.subscribe(id => this.idSubtask = id);
   }
 
   // animacion para agregar notas
@@ -40,32 +45,62 @@ export class NotesComponent implements OnInit {
   }
 
   // editar nota
-  updateNote(note: Note): void {
+  selectNote(note: Note): void {
     this.editNoteID = note.id;
-    this.editNote(note);
+    this.editNote(note);    
   }
 
   // cancelar edicion al dar click en otra parte
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent): void {
+
+    if(!(this.getNewNote.value.trim() === '')) this.createNote();
+    if(this.getNote.value.trim() === '') this.updateNote(this.editNoteID);
+
     const content = event.target as HTMLElement;
-    const noteTextQ = content.closest('.note-gral') !== null;
-    const noteTextC = content.closest('.notes') === null;
-    const clickNote = !!content.closest('.notes');
+    const upNotes = content.closest('#notes');
     const notesBtn = content.closest('.notes-btn');
     const notesNew = content.closest('.note-new');
 
-    if(!(noteTextC && !noteTextQ) && this.isClickHandled) {
-      console.log(`editar: ${this.isClickHandled}`);
+    // logica para quitar seleccin al dar clock en otro lado
+    !upNotes ? this.count += 1 : 
+      this.count > 1 ? this.count = 0 : null;
+
+    if(this.count > 1) {
       this.editNoteID = 0;
-      this.isClickHandled = false;
-    } else {
-      this.isClickHandled = true;
+      this.count = 0;
     }
 
-    if(this.showAddNote) {
-      if(!notesBtn && !notesNew && this.showAddNote) this.showAddNote = false;
+    // logica para visualizar "crear notas"
+    if(this.showAddNote)
+      if(!notesBtn && !notesNew && this.showAddNote) 
+        this.showAddNote = false;
+  }
+
+  private createNote(): void {
+    const newNote = {
+      note: this.getNewNote.value,
+      activityID: this.activityID,
+      subtaskID: this.subtaskID,
+      authID: 2
     }
+
+    // enviar nueva nota
+    this.appService.postNote(newNote).subscribe({
+      complete: () => this.appService.getNotes(this.activityID, this.subtaskID).subscribe(notes => {
+        this.notes = notes;
+        notes.forEach(note => this.auth[note.authID] = this.getAuthor(note.authID));
+      })
+    });
+
+    this.formGroup.patchValue({ newNote: '' });
+  }
+
+  private updateNote(noteID: number): void  {
+    if(noteID !== 0) {
+      // eliminar nota
+    }
+    
   }
 
   // obtener autor de la nota
@@ -78,7 +113,8 @@ export class NotesComponent implements OnInit {
   // formulario de las notas
   private formNotes(): FormGroup {
     return this.formGroup = this.fb.group({
-      notes: ['', Validators.required],
+      note: ['', Validators.required],
+      newNote: ['', Validators.required],
       activityID: ['', Validators.required],
       subtaskID: ['', Validators.required],
       authID: ['', Validators.required]
@@ -88,9 +124,19 @@ export class NotesComponent implements OnInit {
   // llenar textarea con la informacion de las notas
   private editNote(note: Note): void {
     this.formGroup.patchValue({
-      notes: note.note,
+      note: note.note,
       authID: this.auth[note.authID],
+      newNote: ''
     })
+  }
+
+  // GETTERS
+  get getNewNote(): FormControl {
+    return this.formGroup.get('newNote') as FormControl;
+  }
+
+  get getNote(): FormControl {
+    return this.formGroup.get('note') as FormControl;
   }
 
 }

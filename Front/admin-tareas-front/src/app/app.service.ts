@@ -6,7 +6,7 @@ import { Group } from './models/IGroup';
 import { User } from './models/IUser';
 import { environment } from '../enviroments/environment';
 import { Subtask } from './models/ISubtask';
-import { CreateSubtask, SendComplete, UpdateSubtask } from './types';
+import { CreateSubtask, PostNote, SendComplete, UpdateSubtask } from './types';
 import { Note } from './models/INote';
 
 @Injectable({
@@ -73,6 +73,10 @@ export class AppService {
 
   getNotes(activityID: number, subutaskID: number): Observable<Note[]> {
     return this.http.get<Note[]>(`${this.notesUrl}/${activityID}/${subutaskID}`);
+  }
+
+  postNote(body: PostNote): Observable<PostNote> {
+    return this.http.post<PostNote>(`${this.notesUrl}`, body);
   }
 
   // Navegacion (Menu - nav)

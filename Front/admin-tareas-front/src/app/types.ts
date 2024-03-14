@@ -20,3 +20,10 @@ export interface CreateSubtask {
     assignedTo: number;
     activityID: number;
 }
+
+export interface PostNote {
+    note: string;
+    activityID: number;
+    subtaskID: number,
+    authID: number;
+}

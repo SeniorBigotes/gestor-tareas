@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Subtask } from '../../../../models/ISubtask';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../../../../app.service';
@@ -31,12 +31,16 @@ export class SubtaskComponent implements OnInit {
   btnAddSubtask: boolean = true; // mostrar o no le boton de add
   participants: User[] = []; // lista de miembros del grupo
   formGroup: FormGroup = this.formSubtask(); // formulario para editar subtarea
-  subtaskEditID: number | null = null; // valor para comparar con el id de la subtarea
+  subtaskEditID: number | null = null; // Comparar con el id de la subtarea
+  subtaskShowNotes: number | null = null; // Comparar con el id de la subtarea
+
+  notesShow: boolean = false; //
 
 
   constructor(private appService: AppService,
               private activitiesService: ActivitiesService,
-              private fb: FormBuilder) {}
+              private fb: FormBuilder,
+              private cdr: ChangeDetectorRef) {}
   
   /**
    * Obtener subtareas autores y asignados
@@ -222,8 +226,12 @@ export class SubtaskComponent implements OnInit {
   }
 
   showNotes(subtaskID: number): void {
-    console.log('mostrando notas')
+    this.subtaskShowNotes === subtaskID ? 
+    this.subtaskShowNotes = null : this.subtaskShowNotes = subtaskID;
+
+    this.activitiesService.setShowNotes(this.subtaskShowNotes);
   }
+
 
   /** formulario para editar
    * @returns form builder

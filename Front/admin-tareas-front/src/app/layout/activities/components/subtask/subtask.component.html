@@ -7,10 +7,12 @@
                 <div class="subtask m-2" [ngClass]="checked(subtask) ? 'checked' : ''"
                 [formGroup]="formGroup">
                     <!-- mostrar notas -->
-                    <app-notes [activityID]="0" [subtaskID]="subtask.id" />
+                    <app-notes [activityID]="0" [subtaskID]="subtask.id"  class="notes-main"
+                        [ngClass]="subtask.id === subtaskShowNotes ? 'notes-in' : 'notes-out'"/>
                     
                     <div class="subtask-content">
                         <!-- notas -->
+                        <!-- <div class="btn-notas m-2" (click)="showNotes(subtask.id)"> -->
                         <div class="btn-notas m-2" (click)="showNotes(subtask.id)">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="20" height="20"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"

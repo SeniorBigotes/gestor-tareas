@@ -14,3 +14,15 @@ exports.viewNotes = async (req, res) => {
         catchError(res, e);
     }
 }
+
+exports.createNote = async (req, res) => {
+    try {
+        const body = req.body;
+        const newNote = await service.createNote(body);
+
+        newNote ? sendReport(res, newNote, 201) : 
+            sendError(res, 400, 'The data provided does not meet the required conditions');
+    } catch(e) {
+        catchError(res, e);
+    }
+}

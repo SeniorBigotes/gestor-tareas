@@ -1,4 +1,4 @@
-<div class="notes">
+<div class="notes" [ngClass]="idSubtask === subtaskID ? 'notes-in' : 'notes-out'">
     <div class="notes-body" [formGroup]="formGroup">
         <div class="notes-btn w-100 p-1 d-grid justify-content-center"
         (click)="addNote()">
@@ -16,18 +16,20 @@
         <!-- Crear nota -->
         <div class="notes-content">
             <div class="notes-text pt-1 note-new" [ngClass]="showAddNote ? 'slide-in' : 'slide-out'">
-                <p class="fw-bold">Autor: <textarea id="textarea" class="fw-normal notes_input" placeholder=" Nota"></textarea></p>
+                <p class="fw-bold">Autor: <textarea id="textarea" class="fw-normal notes_input" placeholder=" Nota"
+                    formControlName="newNote"></textarea></p>
                 <div class="line"></div>
             </div>
         </div>
     
         <!-- todas las notas -->
-        <div class="notes-content">
+        <div class="notes-content" id="notes">
             @for(note of notes; track note) {
-                <div class="notes-text note-gral pt-1" (click)="updateNote(note)">
+                <div class="notes-text note-gral pt-1" (click)="selectNote(note)">
                     @if(editNoteID === note.id) {
                         <p class="fw-bold">Mauricio:
-                            <textarea class="fw-normal notes_input" placeholder=" Note" formControlName="notes"></textarea></p>
+                            <textarea class="fw-normal notes_input" placeholder=" Note" formControlName="note"></textarea>
+                        </p>
                     } @else {
                         <p class="fw-bold"> {{ auth[note.authID] | async }}: <span class="fw-normal"> {{note.note}} </span></p>
                     }

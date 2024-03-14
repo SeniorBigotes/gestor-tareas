@@ -16,8 +16,8 @@ export class ActivitiesService {
   private getActivity = new BehaviorSubject<Activities | null>(null);
   private getSubtasks = new BehaviorSubject<Subtask[] | null>(null);
   private getParticipants = new BehaviorSubject<User[] | null>(null);
-
-
+  private count = new BehaviorSubject<number>(0); // variable de ayuda para notes
+  private showNotes = new BehaviorSubject<number | null>(null); // mostrar notas o no
 
   constructor(private appService: AppService) { }
   
@@ -39,6 +39,16 @@ export class ActivitiesService {
 
   get $getParticipants(): Observable<User[] | null>  {
     return this.getParticipants.asObservable();
+  }
+
+  /* NOTES COMPONENT */
+
+  get $count(): Observable<number> {
+    return this.count.asObservable();
+  }
+
+  get $getshowNotes(): Observable<number | null> {
+    return this.showNotes.asObservable();
   }
 
   checkOverflow(contentElement?: ElementRef) {    
@@ -69,5 +79,13 @@ export class ActivitiesService {
     const requests = participants.map(p => this.appService.getUser(p.userID));
     // devuelve un nuevo observable cuando se completa el anterior (requests)
     forkJoin(requests).subscribe(users => this.getParticipants.next(users));
+  }
+
+  getCount(number: number): void {
+    this.count.next(number);
+  }
+
+  setShowNotes(activity: number | null): void {
+    this.showNotes.next(activity);
   }
 }
