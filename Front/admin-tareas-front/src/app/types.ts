@@ -24,6 +24,14 @@ export interface CreateSubtask {
 export interface PostNote {
     note: string;
     activityID: number;
-    subtaskID: number,
+    subtaskID: number;
     authID: number;
+}
+
+export interface PutNote {
+    note: string;
+}
+
+export interface Message {
+    message: string;
 }

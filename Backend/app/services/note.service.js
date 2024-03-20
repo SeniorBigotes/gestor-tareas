@@ -2,6 +2,11 @@ const { returnData } = require("../helpers/util");
 const { Op } = require('sequelize');
 const Note = require("../models/note.model");
 
+async function viewNote(noteID) {
+    const note = await Note.findByPk(noteID);
+    return returnData(note);
+}
+
 // viewNotes
 async function viewNotes(activityID, subtaskID) {
     const notes = await Note.findAll({
@@ -39,7 +44,37 @@ async function createNote(body) {
     return returnData(data);
 }
 
+// updateNote
+async function updateNote(noteID, body) {
+    let verify;
+    const data = await viewNote(noteID);
+
+    if(data) {
+        verify = Object.values(body).every(value => value === null || value === undefined);
+
+        if(!verify) {
+            const { note } = body;
+            data.note = note;
+            await data.save();
+        } else {
+            data = 0;
+        }
+    }
+
+    return returnData(data);
+}
+
+// deleteNote
+async function deleteNote(noteID) {
+    const note = await viewNote(noteID);
+    if(!note) return false;
+    await note.destroy();
+    return true;
+}
+
 module.exports = {
     viewNotes,
-    createNote
+    createNote,
+    updateNote,
+    deleteNote,
 }

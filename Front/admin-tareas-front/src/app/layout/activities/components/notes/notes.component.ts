@@ -50,12 +50,17 @@ export class NotesComponent implements OnInit {
     this.editNote(note);    
   }
 
+  action(noteID: number): void {
+    // console.log(this.getNote.value);
+    this.getNote.value.trim() === '' ? 
+      this.deleteNote(noteID) : this.updateNote(noteID);
+  }
+
   // cancelar edicion al dar click en otra parte
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent): void {
 
     if(!(this.getNewNote.value.trim() === '')) this.createNote();
-    if(this.getNote.value.trim() === '') this.updateNote(this.editNoteID);
 
     const content = event.target as HTMLElement;
     const upNotes = content.closest('#notes');
@@ -96,11 +101,25 @@ export class NotesComponent implements OnInit {
     this.formGroup.patchValue({ newNote: '' });
   }
 
+  // actualizar notas
   private updateNote(noteID: number): void  {
-    if(noteID !== 0) {
-      // eliminar nota
+    const note = {
+      note: this.getNote.value
     }
-    
+    this.appService.putNote(noteID, note).subscribe(() => {
+      this.appService.getNotes(this.activityID, this.subtaskID)
+                        .subscribe(notes => this.notes = notes)
+        }
+      );
+    this.editNoteID = 0;
+  }
+
+  // eliminar notas
+  private deleteNote(noteID: number): void {
+    this.appService.deleteNote(noteID).subscribe({
+      complete: () => this.appService.getNotes(this.activityID, this.subtaskID)
+                                        .subscribe(notes => this.notes = notes)
+    });
   }
 
   // obtener autor de la nota

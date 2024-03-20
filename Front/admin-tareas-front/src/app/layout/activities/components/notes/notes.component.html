@@ -27,9 +27,11 @@
             @for(note of notes; track note) {
                 <div class="notes-text note-gral pt-1" (click)="selectNote(note)">
                     @if(editNoteID === note.id) {
-                        <p class="fw-bold">Mauricio:
-                            <textarea class="fw-normal notes_input" placeholder=" Note" formControlName="note"></textarea>
-                        </p>
+                        <div class="d-flex justify-content-between align-items-center mx-3">
+                            <p class="fw-bold">Mauricio:</p>
+                            <p class="btn-delete fw-bold" (click)="action(note.id)">X</p>
+                        </div>
+                        <textarea class="fw-normal notes_input" placeholder=" Note" formControlName="note"></textarea>
                     } @else {
                         <p class="fw-bold"> {{ auth[note.authID] | async }}: <span class="fw-normal"> {{note.note}} </span></p>
                     }

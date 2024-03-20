@@ -6,7 +6,7 @@ import { Group } from './models/IGroup';
 import { User } from './models/IUser';
 import { environment } from '../enviroments/environment';
 import { Subtask } from './models/ISubtask';
-import { CreateSubtask, PostNote, SendComplete, UpdateSubtask } from './types';
+import { CreateSubtask, Message, PostNote, PutNote, SendComplete, UpdateSubtask } from './types';
 import { Note } from './models/INote';
 
 @Injectable({
@@ -77,6 +77,14 @@ export class AppService {
 
   postNote(body: PostNote): Observable<PostNote> {
     return this.http.post<PostNote>(`${this.notesUrl}`, body);
+  }
+
+  putNote(noteID: number, body: PutNote): Observable<PutNote> {
+    return this.http.put<PutNote>(`${this.notesUrl}/${noteID}`, body);
+  }
+
+  deleteNote(noteID: number): Observable<Message> {
+    return this.http.delete<Message>(`${this.notesUrl}/${noteID}`);
   }
 
   // Navegacion (Menu - nav)
